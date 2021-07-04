@@ -6,6 +6,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+import { AppProps } from "next/app";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
 // const client = new ApolloClient({
@@ -19,7 +20,7 @@ const client = new ApolloClient({
   // link: errorLink,
 });
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider session={pageProps.session}>
       <ApolloProvider client={client}>
