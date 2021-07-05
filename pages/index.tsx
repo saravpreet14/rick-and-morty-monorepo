@@ -1,6 +1,7 @@
 import Home from "../components/home/home";
 import { signIn, signOut, useSession } from "next-auth/client";
 import Navbar from "../components/navbar/navbar";
+import Widgets from '../components/widgets/widgets';
 
 export default function SignInPage() {
   const [session, loading] = useSession();
@@ -15,6 +16,7 @@ export default function SignInPage() {
       <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
         <Home />
       </Navbar>
+      <Widgets />
     </>
   );
 }
