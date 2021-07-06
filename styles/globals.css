@@ -45,6 +45,10 @@ a {
   border-color: black;
 }
 
+.MuiGridListTileBar-title {
+  height: auto;
+}
+
 /* .MuiToolbar-root {
   padding: 1vh 2vw;
 } */

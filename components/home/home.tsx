@@ -17,7 +17,7 @@ interface characterData {
 var isSearch: boolean = false;
 var my_filter: string = "";
 
-export default function Home() {
+export default function Home(props) {
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
@@ -101,7 +101,7 @@ export default function Home() {
         search={(event: React.FormEvent<HTMLFormElement>) => search(event)}
         value={my_filter}
       />
-      <CharacterList characters={results} />
+      <CharacterList characters={results} imageSize={props.imageSize} />
       <div className={styles.loadMore}>
         {info.next ? (
           <Button
