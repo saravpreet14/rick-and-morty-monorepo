@@ -7,30 +7,26 @@ import Error from "../error/error";
 
 export default function Episodes(props) {
   const Episodes_data = gql`
-  query EpisodeQuery($ids: [ID!]!){
-    episodesByIds(ids:$ids) {
-          id, name, air_date, episode, created, characters{id, name}
+    query EpisodeQuery($ids: [ID!]!){
+        episodesByIds(ids:$ids) {
+            id, name, air_date, episode, created, characters{id, name}
+        },
+    }
+  `;
+
+    const ids:number[] = Array.from({length: 41}, (_, i) => i + 1)
+    const { loading, error, data } = useQuery(Episodes_data, {
+    variables: {
+        ids: ids,
     },
-  }
-`;
+    errorPolicy: "ignore",
+    });
+    const [selectedEpisode, setEpisode] = useState(null);
 
-const ids:number[] = Array.from({length: 41}, (_, i) => i + 1)
-console.log(ids)
-const { loading, error, data } = useQuery(Episodes_data, {
-variables: {
-    ids: ids,
-  },
-errorPolicy: "ignore",
-});
-const [selectedEpisode, setEpisode] = useState(null);
-
-if (loading) return <Spinner />;
-if (error) return <Error />;
+    if (loading) return <Spinner />;
+    if (error) return <Error />;
+    
     const episodesData = data.episodesByIds;
-
-   
-
-    console.log(selectedEpisode);
 
     return (
         <div className={styles.main}>

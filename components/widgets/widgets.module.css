@@ -10,13 +10,6 @@
   z-index: 1200;
 }
 
-.cell {
-  margin: 3vh 3vw;
-  background-color: white;
-  border-radius: 10px;
-  padding: 0.8rem;
-}
-
 .cell1 {
   top: 8vh;
   left: 7vw;
@@ -70,4 +63,32 @@
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.icon {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon:hover {
+  border-radius: 5%;
+  transition: all 0.1s ease 0s;
+}
+
+.character {
+  padding: 0;
+  margin: 0.5rem;
+  max-width: 80px;
+  overflow: hidden;
+}
+
+.characterName {
+  margin: 0;
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+
+.characterArea {
+  display: flex;
+  flex-wrap: wrap;
 }
