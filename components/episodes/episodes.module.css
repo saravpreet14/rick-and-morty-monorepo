@@ -1,6 +1,7 @@
 .main {
     font-size: 1.3rem;
-    /* width: 18vw; */
+    height: 100vh;
+    overflow: scroll;
 }
 
 .listElement {
