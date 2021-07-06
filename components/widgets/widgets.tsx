@@ -1,10 +1,11 @@
 import styles from './widgets.module.css';
 import Link from 'next/link';
+import Image from 'next/image'
 
 export default function Widgets(props) {
 
     const data = props.data;
-    console.log(data);
+    // console.log(data);
     
     return (
         <>
@@ -23,14 +24,16 @@ export default function Widgets(props) {
                 <div className={styles.characterArea}>
                     {data.characters.map(character => {
                         return (
-                            <div className={styles.character} >
+                            <div className={styles.character} key = {character.id}>
                                 <Link href={
                                     "/character/" +
                                     character.name.replace(" ", "") +
                                     "-" +
                                     character.id
-                                }>
-                                    <img width='80' height='80' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} className={styles.icon} />
+                                  
+                                }
+                                passHref>
+                                    <Image width='80' height='80' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} className={styles.icon} />
                                 </Link>
                                 <p className={styles.characterName} key={character.id}>{character.name}</p>
                             </div>
