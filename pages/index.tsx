@@ -15,8 +15,9 @@ export default function SignInPage() {
     <>
       <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
         <Home />
+        <Widgets />
       </Navbar>
-      <Widgets />
+      
     </>
   );
 }

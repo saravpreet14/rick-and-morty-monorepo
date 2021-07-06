@@ -1,6 +1,29 @@
 import styles from './widgets.module.css';
+import { useQuery, gql } from "@apollo/client";
+import Spinner from "../spinner/spinner";
+import Error from "../error/error";
 
-export default function widgets(props) {
+export default function Widgets(props) {
+    const Episodes_data = gql`
+      query EpisodeQuery($ids: [ID!]!){
+        episodesByIds(ids:$ids) {
+              id, name, air_date, episode, created, characters{id, name}
+        },
+      }
+    `;
+
+  const ids:number[] = Array.from({length: 41}, (_, i) => i + 1)
+  // console.log(ids)
+  const { loading, error, data } = useQuery(Episodes_data, {
+    variables: {
+        ids: ids,
+      },
+    errorPolicy: "ignore",
+  });
+
+  if (loading) return <Spinner />;
+  if (error) return <Error />;
+  // console.log(data);
     
     return (
         <>
