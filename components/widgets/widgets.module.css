@@ -10,7 +10,7 @@
   z-index: 1200;
 } */
 
-.cell1 {
+/* .cell1 {
   top: 8vh;
   left: 7vw;
 }
@@ -38,7 +38,7 @@
 .cell6 {
   bottom: 7vh;
   right: 7vw;
-}
+} */
 
 .fixed {
   /* z-index: 1500; */
@@ -51,12 +51,17 @@
   padding: 0.8rem;
   overflow: auto;
   margin: 1rem;
+  width: 26rem;
+  height: 26rem;
 }
 
 .grid {
-  display: grid;
+  /* display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr; */
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
   /* padding: 2rem 1rem; */
   /* width: 90vw; */
   height: 85vh;

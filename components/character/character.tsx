@@ -98,7 +98,7 @@ export default function MyCharacter(props: { params: { id: string } }) {
         <br />
         <br />
 
-        <Link href="/">
+        <Link passHref href="/">
           <Button variant="contained" color="primary" size="large">
             <strong>Back</strong>
           </Button>
