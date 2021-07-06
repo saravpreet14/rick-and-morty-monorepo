@@ -2,6 +2,7 @@
     font-size: 1.3rem;
     height: 100vh;
     overflow: scroll;
+    min-width: 170px;
 }
 
 .listElement {
