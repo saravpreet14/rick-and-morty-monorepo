@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
+import customStyles from './characterList.module.css';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -13,7 +14,7 @@ const styles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: "90vw",
+    // width: "90vw",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -23,6 +24,8 @@ const styles = makeStyles((theme) => ({
     height: "300px",
     borderRadius: "4%",
     overflow: "hidden",
+    borderRight: '3px solid #fff',
+    borderBottom: '3px solid #fff',
   },
   noData: {
     textSlign: "center",
@@ -59,7 +62,7 @@ export default function TitlebarGridList(props: {
               {...styleProps}
               passHref
             >
-              <GridListTile className={classes.gridTile} key={character.id}>
+              <GridListTile className={customStyles.gridTile} key={character.id}>
                 <Image
                   width="300"
                   height="300"
