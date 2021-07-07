@@ -9,7 +9,7 @@ import {
 import { AppProps } from "next/app";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
-
+import reportWebVitals from '../lib/reportWebVitals';
 // const client = new ApolloClient({
 //   uri: "https://48p1r2roz4.sse.codesandbox.io",
 //   cache: new InMemoryCache(),
@@ -32,5 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
+
+reportWebVitals(console.log, true);
 
 export default MyApp;
