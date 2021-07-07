@@ -15,7 +15,7 @@ interface characterData {
 }
 
 var isSearch: boolean = false;
-var my_filter: string = "";
+var my_filter: string = null;
 
 export default function Home(props) {
   const Characters_data = gql`
