@@ -47,7 +47,7 @@ export default function TitlebarGridList(props: {
     },
   }));
   const classes = styles();
-
+  
   const styleProps={style: { width: "auto", height: "auto" }};
 
   return (
