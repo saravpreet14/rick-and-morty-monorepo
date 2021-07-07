@@ -22,7 +22,29 @@ const client = new ApolloClient({
 });
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
-  console.log(metric)
+  switch (metric.name) {
+    case 'FCP':
+      console.log("FCP",metric);
+      break
+    case 'LCP':
+      // handle LCP results
+      console.log("LCP",metric);
+      break
+    case 'CLS':
+      // handle CLS results
+      console.log("CLS",metric);
+      break
+    case 'FID':
+      // handle FID results
+      console.log("FID",metric);
+      break
+    case 'TTFB':
+      // handle TTFB results
+      console.log("TTFB",metric);
+      break
+    default:
+      break
+  }
 }
 function MyApp({ Component, pageProps }: AppProps) {
   return (
