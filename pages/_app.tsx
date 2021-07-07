@@ -6,7 +6,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
-import { AppProps } from "next/app";
+import { AppProps, NextWebVitalsMetric } from "next/app";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
 
@@ -20,10 +20,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   // link: errorLink,
 });
-export function reportWebVitals(metric) {
-  if (metric.label === 'web-vital') {
-    console.log(metric) // The metric object ({ id, name, startTime, value, label }) is logged to the console
-  }
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric)
 }
 function MyApp({ Component, pageProps }: AppProps) {
   return (
