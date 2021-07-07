@@ -15,7 +15,6 @@ import reportWebVitals from '../lib/reportWebVitals';
 //   cache: new InMemoryCache(),
 // });
 
-
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql/",
   cache: new InMemoryCache(),
@@ -26,7 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider session={pageProps.session}>
       <ApolloProvider client={client}>
-        
         <Component {...pageProps} />
       </ApolloProvider>
     </Provider>

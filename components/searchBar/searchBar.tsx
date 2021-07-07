@@ -35,7 +35,6 @@ export default function SearchBar(props: {
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     // setValue(event.target.value);
-    // console.log("handleChange",event.target.value)
     props.change(event.target.value)
   }
 

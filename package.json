@@ -18,8 +18,7 @@
     "next-auth": "latest",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "source-map-loader": "^3.0.0",
-    "web-vitals": "^2.1.0"
+    "source-map-loader": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
