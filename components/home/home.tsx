@@ -100,7 +100,33 @@ export default function Home(props) {
       <SearchBar
         search={(event: React.FormEvent<HTMLFormElement>) => search(event)}
         value={my_filter}
-      />
+      />        
+      <div className={styles.loadMore}>
+      {isSearch ? (
+        <Button
+        variant="contained"
+        color="primary"
+        size="large"
+          onClick={() => {
+            isSearch = false;
+            my_filter = null;
+            const elt = event.target as Element;
+            // console.log(elt)
+            const inputElement = elt.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].childNodes[1].childNodes[0] as HTMLInputElement;
+            inputElement.value = null;
+            // console.log(inputElement);
+            fetchMore({
+              variables: { page: 1, filter: {} },
+              updateQuery: (prevResult, { fetchMoreResult }) => {
+                return fetchMoreResult;
+              },
+            });
+          }}
+        >
+          Back To All Characters
+        </Button>
+        ) : null}
+        </div>
       <CharacterList characters={results} imageSize={props.imageSize} />
       <div className={styles.loadMore}>
         {info.next ? (

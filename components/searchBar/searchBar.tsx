@@ -29,11 +29,11 @@ export default function SearchBar(props: {
 }) {
   const classes = styles();
 
-  const [value, setValue] = useState(props.value);
+  // const [value, setValue] = useState(props.value);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
+  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setValue(event.target.value);
+  // }
 
   return (
     <div>
@@ -48,8 +48,8 @@ export default function SearchBar(props: {
           id="outlined-size-normal"
           variant="outlined"
           style={{ width: "20rem" }}
-          value={value}
-          onChange={handleChange}
+          value={props.value}
+          // onChange={handleChange}
         />
         <IconButton
           type="submit"
