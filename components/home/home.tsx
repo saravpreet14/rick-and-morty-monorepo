@@ -17,7 +17,7 @@ interface characterData {
 var isSearch:boolean = false;
 var static_filter:string = "";
 
-export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:string}) {
+export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large'}) {
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
