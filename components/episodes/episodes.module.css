@@ -33,4 +33,16 @@
     .listElement {
         font-size: 0.8rem;
     }
+    .main {
+        /* max-height: 20vh; */
+        height: auto;
+        width: 100vw;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+    }
+    .listElement {
+        min-width: 30vw;
+        float: left;
+    }
 }

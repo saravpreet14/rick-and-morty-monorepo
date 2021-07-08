@@ -36,12 +36,13 @@
 
 @media (max-width: 1000px) {
   .partition {
-    grid-template-columns: 3fr 7fr;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 100fr; */
   }
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .partition {
     grid-template-columns: 4fr 7fr;
   }
-}
+} */
