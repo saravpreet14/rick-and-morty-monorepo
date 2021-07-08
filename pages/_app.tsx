@@ -9,6 +9,7 @@ import {
 import { AppProps,NextWebVitalsMetric } from "next/app";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
+import axios from 'axios';
 
 
 // const client = new ApolloClient({
@@ -27,22 +28,27 @@ const client = new ApolloClient({
     switch (metric.name) {
       case 'FCP':
         console.log("FCP",metric);
+        axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
         break
       case 'LCP':
         // handle LCP results
         console.log("LCP",metric);
+        axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
         break
       case 'CLS':
         // handle CLS results
         console.log("CLS",metric);
+        axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
         break
       case 'FID':
         // handle FID results
         console.log("FID",metric);
+        axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
         break
       case 'TTFB':
         // handle TTFB results
         console.log("TTFB",metric);
+        axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
         break
       default:
         break
