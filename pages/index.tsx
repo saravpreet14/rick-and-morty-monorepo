@@ -27,7 +27,7 @@ export default function SignInPage() {
           className={styles.partition}
         >
           <Episodes select={(data) => {staticEpisodeData=data; setEpisode(data);}} selected={episodeData ? episodeData.id : null} />
-          {episodeData ? <Widgets data={episodeData} back={() => {staticEpisodeData=null; setEpisode(null);}} /> : <Home imageSize={{width: 300, height: 300}} />}
+          {episodeData ? <Widgets data={episodeData} back={() => {staticEpisodeData=null; setEpisode(null);}} /> : <Home imageSize={{width: 300, height: 300}} buttonSize='large'/>}
         </div>
       </Navbar>
     </>
