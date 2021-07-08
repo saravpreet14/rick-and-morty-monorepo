@@ -60,3 +60,10 @@ a {
     margin-bottom: 2vh;
   }
 }
+
+@media (max-width: 1000px) {
+  .MuiGridListTile-root {
+    max-height: 200px;
+    max-width: 200px;
+  }
+}
