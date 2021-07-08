@@ -102,7 +102,7 @@ export default function Home(props) {
           <Button
             variant="contained"
             color="primary"
-            size="large"
+            size="small"
             onClick={() => {search(""); isSearch=false;}}
           >
             Back to all characters
