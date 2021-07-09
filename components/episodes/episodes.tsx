@@ -31,10 +31,11 @@ export default function Episodes(props) {
     return (
         <div className={styles.main}>
             <br/><br/>
+            {/* <h3>Episodes</h3> */}
             {episodesData.map(episode => {
                 return (
                     <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} onClick={() => props.select(episodesData[Number(episode.id) - 1])} key={episode.id}>
-                        {`${episode.name} - ${episode.episode}`}
+                        {`${episode.episode} - ${episode.name}`}
                     </div>
                 )
             })}
