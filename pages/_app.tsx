@@ -23,7 +23,7 @@ const client = new ApolloClient({
   // link: errorLink,
 });
 
-const readingsDatabse = "https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp";
+const readingsDatabse = "https://rick-and-morty-22d4d-default-rtdb.firebaseio.com/NextApp";
 
  export function reportWebVitals(metric: NextWebVitalsMetric) {
   if (['FCP', 'LCP', 'CLS', 'FID', 'TTFB'].includes(metric.name)) {
@@ -31,7 +31,7 @@ const readingsDatabse = "https://ricky-and-morty-project-default-rtdb.asia-south
     axios.post(`${readingsDatabse}/${metric.name}.json`, metric.value);
     printReadings(readingsDatabse + '.json');
   }
-}
+ }
   
 
 function MyApp({ Component, pageProps }: AppProps) {
