@@ -1,5 +1,4 @@
 .main {
-<<<<<<< HEAD
   font-size: 1.3rem;
   height: 95vh;
   overflow: scroll;
@@ -8,17 +7,7 @@
   margin-left: 5px;
   /* flex-grow: 5; */
   /* flex-shrink: 3; */
-=======
-    font-size: 1.3rem;
-    height: 95vh;
-    overflow: scroll;
-    /* max-width: 300px; */
-    margin: 0;
-    margin-left: 5px;
-    /* flex-grow: 5; */
-    /* flex-shrink: 3; */
-    background-color: lightblue;
->>>>>>> 282845d53729015a4d1b30f6764a4c4c6d35165b
+  background-color: lightblue;
 }
 
 .listElement {
@@ -42,7 +31,6 @@
 }
 
 @media (max-width: 1000px) {
-<<<<<<< HEAD
   .listElement {
     font-size: 0.8rem;
   }
@@ -56,29 +44,11 @@
   }
   .listElement {
     min-width: 30vw;
+    max-height: 10vh;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    /* max-width: 200px; */
     float: left;
   }
 }
-=======
-    .listElement {
-        font-size: 0.8rem;
-    }
-    .main {
-        /* max-height: 20vh; */
-        height: auto;
-        width: 100vw;
-        overflow-x: scroll;
-        display: flex;
-        flex-direction: row;
-    }
-    .listElement {
-        min-width: 30vw;
-        max-height: 10vh;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        /* max-width: 200px; */
-        float: left;
-    }
-}
->>>>>>> 282845d53729015a4d1b30f6764a4c4c6d35165b

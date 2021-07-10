@@ -40,6 +40,8 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     variables: { page: 1, filter: {} },
     errorPolicy: "ignore",
   });
+
+
   if (loading) return <Spinner />;
   if (error) return <Error />;
 

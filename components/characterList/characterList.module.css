@@ -1,6 +1,6 @@
 .gridTile {
-  margin: 1.5rem;
-  height: 300px;
+  margin: 0.5rem;
+  height: 80px;
   border-radius: 4%;
   overflow: hidden;
   border-right: 3px solid #fff;
@@ -10,4 +10,8 @@
 
 .gridTile:hover {
   border-color: black;
+}
+.loadSize {
+  height: 100px;
+  width: 100px;
 }
