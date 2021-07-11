@@ -136,14 +136,15 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
       <CharacterList characters={results} imageSize={props.imageSize} isWidget={props.isWidget}/>
       <div className={styles.loadMore}>
         {info.next ? (
-          <Button
-            variant="contained"
-            color="primary"
-            size={props.buttonSize}
-            onClick={() => loadMore()}
-          >
-            Load More
-          </Button>
+          // <Button
+          //   variant="contained"
+          //   color="primary"
+          //   size={props.buttonSize}
+          //   onClick={() => loadMore()}
+          // >
+          //   Load More
+          // </Button>
+          <CircularProgress />
         ) : null}
       </div>
     </div>

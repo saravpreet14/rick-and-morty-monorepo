@@ -86,7 +86,8 @@ export default function TitlebarGridList(props: {
                 />
                 <GridListTileBar  className={customStyles.gridListTile} title={<div className={customStyles.title}>{character.name}</div>} />
               </GridListTile>
-              </div>)}
+              </div>
+              )}
             </Link>
           ))}
         </GridList>
