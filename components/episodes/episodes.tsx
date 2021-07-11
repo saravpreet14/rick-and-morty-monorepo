@@ -4,6 +4,7 @@ import styles from './episodes.module.css';
 import { useQuery, gql } from "@apollo/client";
 import Spinner from "../spinner/spinner";
 import Error from "../error/error";
+import { CircularProgress } from '@material-ui/core';
 
 export default function Episodes(props) {
   const Episodes_data = gql`
@@ -23,7 +24,7 @@ export default function Episodes(props) {
     });
     // const [selectedEpisode, setEpisode] = useState(null);
 
-    if (loading) return <Spinner />;
+    if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
     if (error) return <Error />;
     
     const episodesData = data.episodesByIds;

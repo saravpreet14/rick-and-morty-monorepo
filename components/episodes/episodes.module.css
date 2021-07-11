@@ -30,6 +30,12 @@
   color: #fff;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+
 @media (max-width: 1000px) {
   .listElement {
     font-size: 0.8rem;
@@ -50,5 +56,8 @@
     white-space: nowrap;
     /* max-width: 200px; */
     float: left;
+  }
+  .spinner {
+    margin-top: 2vh;
   }
 }

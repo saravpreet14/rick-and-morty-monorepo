@@ -4,7 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import React, { useState, useRef, useEffect } from "react";
 import SearchBar from "../searchBar/searchBar";
 import CharacterList from "../characterList/characterList";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import Spinner from '../spinner/spinner';
 import Error from '../error/error';
 
@@ -20,6 +20,7 @@ var static_filter:string = "";
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean}) {
   const trackScrolling = (event) => {
     var element = event.target;
+    // console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       loadMore();
       // console.log('scrolled')
@@ -28,6 +29,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   useEffect(() => {
     const page = document.querySelector('#scroll');
     if(page) {
+      // if(page.clientHeight === page.scrollHeight) loadMore();
       page.removeEventListener('scroll', trackScrolling);
       page.addEventListener('scroll', trackScrolling);
     }
@@ -57,12 +59,14 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     errorPolicy: "ignore",
   });
 
-  if (loading) return <Spinner />;
+  if (loading) return <div className={styles.spinner} ><CircularProgress /></div>; //<Spinner />;
   if (error) return <Error />;
 
   function loadMore(/*isSearch:boolean, my_filter:string*/) {
     document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
     const nextPage = data.characters.info.next;
+    console.log(data.characters.info)
+    if(nextPage === null) return;
     var variables = { page: nextPage, filter: {} };
     if (isSearch) {
       variables = { page: nextPage, filter: { name: my_filter } };
