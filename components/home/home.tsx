@@ -111,7 +111,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           </Button>
           </div>
         ) : null}
-      <CharacterList characters={results} imageSize={props.imageSize} />
+      <CharacterList characters={results} imageSize={props.imageSize} isWidget={props.isWidget}/>
       <div className={styles.loadMore}>
         {info.next ? (
           <Button
