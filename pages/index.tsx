@@ -17,8 +17,7 @@ export default function SignInPage() {
 
   const [episodeData, setEpisode] = useState(staticEpisodeData);
 
-
-
+  // console.log(document);
 
   return (
     <>

@@ -18,6 +18,22 @@ var isSearch:boolean = false;
 var static_filter:string = "";
 
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean}) {
+  const trackScrolling = (event) => {
+    var element = event.target;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      loadMore();
+      // console.log('scrolled')
+    }
+  }
+  useEffect(() => {
+    const page = document.querySelector('#scroll');
+    if(page) {
+      page.removeEventListener('scroll', trackScrolling);
+      page.addEventListener('scroll', trackScrolling);
+    }
+  })
+  // console.log(window)
+  
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
@@ -41,11 +57,11 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     errorPolicy: "ignore",
   });
 
-
   if (loading) return <Spinner />;
   if (error) return <Error />;
 
-  function loadMore(isSearch:boolean, my_filter:string) {
+  function loadMore(/*isSearch:boolean, my_filter:string*/) {
+    document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
     const nextPage = data.characters.info.next;
     var variables = { page: nextPage, filter: {} };
     if (isSearch) {
@@ -66,10 +82,12 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   }
 
   function handleSearchChange(value: string) {
+    document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
     set_filter(value);
   }
 
   function search(query: string): void {
+    document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
     isSearch = query !== '';
     static_filter = query;
     set_filter(query);
@@ -89,7 +107,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   } = data.characters ? data.characters.info : { prev: null, next: null };
 
   return (
-    <div className={props.isWidget ? null : styles.homeMain}
+    <div id="scroll" className={props.isWidget ? null : styles.homeMain}
     // style={{height: '95vh', overflow: 'scroll'}}
     >
       <Head>
@@ -118,7 +136,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
             variant="contained"
             color="primary"
             size={props.buttonSize}
-            onClick={() => loadMore(isSearch, my_filter)}
+            onClick={() => loadMore()}
           >
             Load More
           </Button>

@@ -67,7 +67,7 @@ export default function TitlebarGridList(props: {
               passHref
             >
               {props.isWidget?(
-              <GridListTile className={customStyles.WgridTile} key={character.id}>
+              <GridListTile className={customStyles.WgridTile}>
                 <Image
                   width={props.imageSize.width}
                   height={props.imageSize.height}
@@ -77,7 +77,7 @@ export default function TitlebarGridList(props: {
                 <GridListTileBar style={{height: 'auto'}} title={<div style={{fontSize:'0.6rem'}}>{character.name}</div>} />
               </GridListTile>):(
               <div className={customStyles.loadSize}>
-              <GridListTile className={customStyles.gridTile} key={character.id}>
+              <GridListTile className={customStyles.gridTile}>
                 <Image
                   width={props.imageSize.width}
                   height={props.imageSize.height}

@@ -27,6 +27,7 @@ const client = new ApolloClient({
   
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // console.log(document);
   return (
     <Provider session={pageProps.session}>
       <ApolloProvider client={client}>
