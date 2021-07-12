@@ -5,6 +5,7 @@ import Home from '../home/home'
 import { Button, CircularProgress } from '@material-ui/core';
 import { useQuery, gql } from "@apollo/client";
 import Error from '../error/error';
+import Forum from "../forum/forum";
 
 export default function Widgets(props) {
     const params = props.params;
