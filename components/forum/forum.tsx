@@ -14,10 +14,7 @@ var current_data = [];
 var static_msg="";
 
 export  default function Forum(props) {
-
-  // console.log("assigned",current_data);
-  console.log(static_msg);
-  // const start_value = static_msg;
+  // console.log(static_msg);
   const [data, setData] = useState([]);
   useEffect(()=>{
     // console.log("here");

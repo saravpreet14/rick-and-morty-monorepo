@@ -95,7 +95,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     isSearch = query !== '';
     static_filter = query;
     set_filter(query);
-
+    
     fetchMore({
       variables: { page: null, filter: { name: query } },
       updateQuery: (prevResult, { fetchMoreResult }) => {

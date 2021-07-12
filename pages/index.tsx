@@ -12,7 +12,7 @@ export default function SignInPage() {
   var authFunction;
   if (session) authFunction = signOut;
   else authFunction = signIn;
-
+  
   return (
     <>
       <Navbar auth={() => authFunction()} isAuth={session ? true : false}>      

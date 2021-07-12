@@ -16,35 +16,7 @@ export default function TitlebarGridList(props: {
   };
   isWidget: boolean;
 }) {
-  const styles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      overflow: "hidden",
-      marginTop: props.imageSize.height === 300 ? "6vh" : "2vh",
-      backgroundColor: theme.palette.background.paper,
-      fontSize: props.imageSize.height === 300 ? '1rem' : '0.6rem',
-    },
-    gridList: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-    },
-    gridTile: {
-      margin: props.imageSize.height === 300 ? "1.5rem" : "0.5rem",
-      height: `${props.imageSize.height}px`,
-      borderRadius: "4%",
-      overflow: "hidden",
-      borderRight: '3px solid #fff',
-      borderBottom: '3px solid #fff',
-    },
-    noData: {
-      textSlign: "center",
-      fontSize: "2rem",
-    },
-  }));
-  const classes = styles();
+
   
   const styleProps={style: { width: "auto", height: "auto" }};
 
