@@ -39,6 +39,7 @@
 }
 .gridTile:hover {
   border-color: black;
+  cursor: pointer;
 }
 .WgridTile:hover {
   border-color: black;
@@ -65,7 +66,7 @@
   }
   .gridTile {
     margin: 0.5rem;
-    height: 85px;
+    height: 100px;
   }
   .loadSize {
     height: 100px;

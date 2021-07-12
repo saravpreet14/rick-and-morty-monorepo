@@ -55,6 +55,7 @@ export default function TitlebarGridList(props: {
       ) : (
         <GridList className={customStyles.gridList}>
           {props.characters.map((character) => (
+            // <div className={customStyles.loadSize} key={character.id}>
             <Link
               key={character.id}
               href={
@@ -76,19 +77,21 @@ export default function TitlebarGridList(props: {
                 />
                 <GridListTileBar style={{height: 'auto'}} title={<div style={{fontSize:'0.6rem'}}>{character.name}</div>} />
               </GridListTile>):(
-              <div className={customStyles.loadSize}>
+              // <div className={customStyles.loadSize}>
               <GridListTile className={customStyles.gridTile}>
+                <div className={customStyles.loadSize}>
                 <Image
                   width={props.imageSize.width}
                   height={props.imageSize.height}
                   src={character.image}
                   alt={character.name}
-                />
+                /></div>
                 <GridListTileBar  className={customStyles.gridListTile} title={<div className={customStyles.title}>{character.name}</div>} />
               </GridListTile>
-              </div>
+              // </div>
               )}
             </Link>
+            // </div>
           ))}
         </GridList>
       )}
