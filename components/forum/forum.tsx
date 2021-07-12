@@ -1,4 +1,4 @@
-import getForumData from "./mock_api";
+import {AddData,getForumData} from "./mock_api";
 import React, { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import {
@@ -9,26 +9,23 @@ import {
   TextFieldClassKey,
 } from "@material-ui/core";
 
-
 var current_data = [];
-function assignData(data:{user:string,msg:string}[]){
-  current_data = data;
-}
 
-export default function Forum(props) {
-  if(current_data==[]){
-  getForumData().then((data) => {
-    assignData(data);
-  })}
-  const [data, setData] = useState(current_data);
+var static_msg="";
+
+export  default function Forum(props) {
+
+  // console.log("assigned",current_data);
+  console.log(static_msg);
+  // const start_value = static_msg;
+  const [data, setData] = useState([]);
   useEffect(()=>{
-    console.log("here");
-    setData(current_data);},[current_data]
-  );
-  const [current_msg,setMsg] = useState("");
-  // console.log("data",data);
+    // console.log("here");
+    getForumData().then(data => setData(data));
+  },[current_data]);
+
+  const [current_msg,setMsg] = useState(static_msg);
   const [session, loading] = useSession();
-  // console.log(session);
 
   const styles = makeStyles((theme) => ({
     root: {
@@ -62,14 +59,17 @@ export default function Forum(props) {
   const classes = styles();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setMsg(event.target.value);
+    static_msg=event.target.value;
   }
   function Addcomment(){
-      console.log(current_msg);
+      // console.log(current_msg);
       if(current_msg!="") {
         setData([...data,{user:session.user.name,msg:current_msg}]);
-        // console.log([...data,{user:session.user.name,msg:current_msg}]);
+        AddData({user:session.user.name,msg:current_msg});
+        setMsg("");
+        static_msg="";
       }
-      // console.log(data);   
+      
   }
 
   return <>
@@ -77,29 +77,27 @@ export default function Forum(props) {
         className={classes.root}
         noValidate
         autoComplete="off"
-        onSubmit={Addcomment}
-      >
-       
+        onSubmit={(event)=>{event.preventDefault();Addcomment;}}
+      >    
         <TextField
-        
           label="Add a comment"
           id="outlined-size-normal"
           variant="outlined"
           style={{ width: "15rem" }}
           placeholder="Add a comment"
-          // value={props.value}
+          value={current_msg}
           onChange={handleChange}
         />
-          <Button
+        <Button
             className={classes.button}
             variant="contained"
             color="primary"
             size="small"
             // size={props.buttonSize}
             onClick={Addcomment}
-          >
-            Comment
-          </Button>
+        >
+          Comment
+        </Button>
       </form>
       {data.map((user_data,index) => (
             <div className={classes.container} key={index}>

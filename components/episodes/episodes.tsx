@@ -17,8 +17,8 @@ export default function Episodes(props) {
     const Episodes_data = gql`
         query Episodes($page: Int, $filter: FilterEpisode){
             episodes(page: $page, filter: $filter) {
-                info { next, prev, count },
-                results {id, name, air_date, episode, created, characters{id, name}}
+                info { next},
+                results {id, name, episode}
             },
         }
     `;
