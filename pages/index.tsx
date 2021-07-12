@@ -6,8 +6,6 @@ import Episodes from '../components/episodes/episodes';
 import Widgets from '../components/widgets/widgets';
 import styles from '../styles/Home.module.css';
 
-let staticEpisodeData = null;
-
 export default function SignInPage() {
   const [session, loading] = useSession();
 
@@ -15,18 +13,13 @@ export default function SignInPage() {
   if (session) authFunction = signOut;
   else authFunction = signIn;
 
-  const [episodeData, setEpisode] = useState(staticEpisodeData);
-
-  // console.log(document);
-
   return (
     <>
       <Navbar auth={() => authFunction()} isAuth={session ? true : false}>      
-        <div 
-          className={styles.partition}
-        >
-          <Episodes select={(data) => {staticEpisodeData=data; setEpisode(data);}} selected={episodeData ? episodeData.id : null} />
-          {episodeData ? <Widgets data={episodeData} back={() => {staticEpisodeData=null; setEpisode(null);}} /> : <Home imageSize={{width: 300, height: 300}} buttonSize="large" isWidget={false} />}
+        <div className={styles.partition} >
+          <Episodes />
+          <Home imageSize={{width: 300, height: 300}} buttonSize="large" isWidget={false} />
+          {/* {episodeData ? <Widgets data={episodeData} back={() => {staticEpisodeData=null; setEpisode(null);}} /> : <Home imageSize={{width: 300, height: 300}} buttonSize="large" isWidget={false} />} */}
         </div>
       </Navbar>
     </>

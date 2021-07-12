@@ -6,6 +6,7 @@ import Error from "../error/error";
 import { CircularProgress } from '@material-ui/core';
 import SearchBar from '../searchBar/searchBar';
 import { KeyboardReturnOutlined, RedoOutlined } from '@material-ui/icons';
+import Link from 'next/link';
 
 var isSearch:boolean = false;
 var static_filter:string = "";
@@ -31,15 +32,11 @@ export default function Episodes(props) {
     });
 
     useEffect(() => {
-        console.log(data);
         loadMore();
     }, [data]);
 
     if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
-    if (error) {
-        console.log(error)
-        return <Error />;
-    }
+    if (error) return <Error />;
 
     function loadMore() {
         if(!data || !data.episodes) return;
@@ -54,11 +51,10 @@ export default function Episodes(props) {
                 ];
                 return fetchMoreResult;
             },
-        }).catch(error => console.log(error));
+        }).catch(error => null);
     }
 
     function search(query: string) {
-        console.log(query);
         static_filter = query;
         isSearch = true;
         setFilter(query);
@@ -70,7 +66,7 @@ export default function Episodes(props) {
                 ];
                 return fetchMoreResult;
             },
-        }).catch(error => console.log(error));
+        }).catch(error => null);
     }
 
     const episodesData = data.episodes.results;
@@ -81,9 +77,11 @@ export default function Episodes(props) {
             <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); search(event.target[0].value); }} />
             {episodesData.map(episode => {
                 return (
-                    <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} onClick={() => props.select(episodesData[Number(episode.id) - 1])} key={episode.id}>
+                    <Link href={`/episode/${episode.episode}-${episode.id}`} passHref key={episode.id} >
+                    <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} /*onClick={() => props.select(episodesData[Number(episode.id) - 1])}*/ key={episode.id}>
                         {`${episode.episode} - ${episode.name}`}
                     </div>
+                    </Link>
                 )
             })}
         </div>

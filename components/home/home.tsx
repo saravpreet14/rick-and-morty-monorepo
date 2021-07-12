@@ -20,7 +20,7 @@ var static_filter:string = "";
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean}) {
   const trackScrolling = (event) => {
     var element = event.target;
-    console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
+    // console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
     if (element.scrollHeight - element.scrollTop - 80 <= element.clientHeight) {
       loadMore();
       // console.log('scrolled')
@@ -65,7 +65,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   function loadMore(/*isSearch:boolean, my_filter:string*/) {
     document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
     const nextPage = data.characters.info.next;
-    console.log(data.characters.info)
+    // console.log(data.characters.info)
     if(nextPage === null) return;
     var variables = { page: nextPage, filter: {} };
     if (isSearch) {
@@ -136,15 +136,15 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
       <CharacterList characters={results} imageSize={props.imageSize} isWidget={props.isWidget}/>
       <div className={styles.loadMore}>
         {info.next ? (
-          props.isWidget ? 
-          <Button
-            variant="contained"
-            color="primary"
-            size={props.buttonSize}
-            onClick={() => loadMore()}
-          >
-            Load More
-          </Button> : 
+          // props.isWidget ? 
+          // <Button
+          //   variant="contained"
+          //   color="primary"
+          //   size={props.buttonSize}
+          //   onClick={() => loadMore()}
+          // >
+          //   Load More
+          // </Button> : 
           <CircularProgress />
         ) : null}
       </div>
