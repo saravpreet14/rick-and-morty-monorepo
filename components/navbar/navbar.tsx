@@ -8,15 +8,15 @@ export default function navbar(props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <p className={styles.siteName} onClick={() => {
+          <span className={styles.siteName} onClick={() => {
               if (Router.pathname === "/") Router.reload();
               else Router.push("/");
             }}>
             Rick and Morty
-          </p>
-          <p className={styles.authButton} onClick={props.auth}>
+          </span>
+          <span className={styles.authButton} onClick={props.auth}>
             {props.isAuth ? "Logout" : "Sign In"}
-          </p>
+          </span>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
