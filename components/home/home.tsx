@@ -20,8 +20,8 @@ var static_filter:string = "";
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean}) {
   const trackScrolling = (event) => {
     var element = event.target;
-    // console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
+    if (element.scrollHeight - element.scrollTop - 80 <= element.clientHeight) {
       loadMore();
       // console.log('scrolled')
     }
@@ -29,7 +29,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   useEffect(() => {
     const page = document.querySelector('#scroll');
     if(page) {
-      // if(page.clientHeight === page.scrollHeight) loadMore();
+      // if(page.clientHeight >= page.scrollHeight - 50) loadMore();
       page.removeEventListener('scroll', trackScrolling);
       page.addEventListener('scroll', trackScrolling);
     }
@@ -111,7 +111,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   } = data.characters ? data.characters.info : { prev: null, next: null };
 
   return (
-    <div id="scroll" className={props.isWidget ? null : styles.homeMain}
+    <div id="scroll" className={props.isWidget ? styles.homeWidget : styles.homeMain}
     // style={{height: '95vh', overflow: 'scroll'}}
     >
       <Head>
@@ -136,14 +136,15 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
       <CharacterList characters={results} imageSize={props.imageSize} isWidget={props.isWidget}/>
       <div className={styles.loadMore}>
         {info.next ? (
-          // <Button
-          //   variant="contained"
-          //   color="primary"
-          //   size={props.buttonSize}
-          //   onClick={() => loadMore()}
-          // >
-          //   Load More
-          // </Button>
+          props.isWidget ? 
+          <Button
+            variant="contained"
+            color="primary"
+            size={props.buttonSize}
+            onClick={() => loadMore()}
+          >
+            Load More
+          </Button> : 
           <CircularProgress />
         ) : null}
       </div>
