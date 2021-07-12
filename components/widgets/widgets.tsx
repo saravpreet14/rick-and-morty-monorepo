@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Home from '../home/home'
 import { Button } from '@material-ui/core';
+import Forum from '../forum/forum';
 
 export default function Widgets(props) {
 
@@ -50,7 +51,7 @@ export default function Widgets(props) {
             </div>
 
             <div className={[styles.fixed, styles.cell4].join(' ')} >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab corrupti reprehenderit ipsam quasi error minima praesentium, odit eveniet quaerat nesciunt quibusdam, fugiat sunt aspernatur asperiores doloremque a nemo distinctio voluptatem.
+               <Forum/>
             </div>
 
             <div className={[styles.fixed, styles.cell5].join(' ')} >
