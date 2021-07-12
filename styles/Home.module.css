@@ -45,6 +45,11 @@
   margin-top: 20vh;
 }
 
+.homeWidget {
+  height: 100%;
+  overflow: scroll;
+}
+
 @media (max-width: 1000px) {
   .partition {
     grid-template-columns: 1fr;
