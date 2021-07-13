@@ -40,7 +40,7 @@ export  default function Forum(props) {
       display:"grid",
       gridTemplateColumns:"auto",
       justifyContent:"space-around",
-      fontSize: "1.2rem",
+      fontSize: "1.5rem",
       fontFamily: "Papyrus, Sans Serif",
       backgroundColor:"#2b5496 !important;",
       color:"white",
@@ -60,6 +60,7 @@ export  default function Forum(props) {
       margin:"5px",
       // position:"absolute",
       right:"-150px",
+      // maxHeight:"20px",
       maxWidth:"fit-content"
     },
     discussion:{
@@ -70,7 +71,7 @@ export  default function Forum(props) {
       gridTemplateColumns:"1fr",
       width:"90%",
       marginLeft:"5%",
-      marginBottom:"5px",
+      marginTop:"5px",
       overflow:"auto",
       height:"60%"
       // position:"absolute"
@@ -94,7 +95,7 @@ export  default function Forum(props) {
       display:"flex",
       width:"fit-content",
       fontFamily: "Sans Serif",
-      fontSize : "20px",
+      fontSize : "18px",
       fontWeight: "bold",
     },
 
@@ -108,7 +109,7 @@ export  default function Forum(props) {
   function Addcomment(){
       // console.log(current_msg);
       if(current_msg!="") {
-        setData([{user:session.user.name,msg:current_msg},...data]);
+        setData([...data,{user:session.user.name,msg:current_msg}]);
         AddData({user:session.user.name,msg:current_msg});
         setMsg("");
         static_msg="";
@@ -122,6 +123,20 @@ export  default function Forum(props) {
           Discussion Forum
       </div>
 
+
+      <div className={classes.discussion}>
+      {data.map((user_data,index) => (
+            <div className={classes.container} key={index}>
+              <div className={classes.user}>
+              <AccountCircleIcon color={get_color[(user_data.user)]}/>
+                {user_data.user}
+              </div>
+              <div>
+                {user_data.msg}
+              </div>
+            </div>
+      ))}
+      </div>
       <form
         className={classes.root}
         noValidate
@@ -149,19 +164,6 @@ export  default function Forum(props) {
           Comment
         </Button>
       </form>
-      <div className={classes.discussion}>
-      {data.map((user_data,index) => (
-            <div className={classes.container} key={index}>
-              <div className={classes.user}>
-              <AccountCircleIcon color={get_color[(user_data.user)]}/>
-                {user_data.user}
-              </div>
-              <div>
-                {user_data.msg}
-              </div>
-            </div>
-      ))}
-      </div>
       </div>
         </>;
 }
