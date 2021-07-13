@@ -9,7 +9,3 @@ var data =  [{user:"phani@123",msg:"Who created Rick and Morty?"},
     //  console.log(data);
     return data; 
 }
-
-export function AddData(user_data){
-    data =[...data,user_data];
-}

@@ -1,4 +1,4 @@
-import {AddData,getForumData} from "./mock_api";
+import {getForumData} from "./mock_api";
 import React, { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -22,7 +22,13 @@ export  default function Forum(props) {
   const [data, setData] = useState([]);
   useEffect(()=>{
     // console.log("here");
-    getForumData().then(data => setData(data));
+    if(localStorage.getItem("data")) setData(JSON.parse(localStorage.getItem("data")));
+    else{
+      getForumData().then(data => {
+        setData(data);
+        localStorage.setItem("data",JSON.stringify(data));
+      });
+    }
   },[current_data]);
 
   const [current_msg,setMsg] = useState(static_msg);
@@ -72,7 +78,7 @@ export  default function Forum(props) {
       width:"90%",
       marginLeft:"5%",
       marginTop:"5px",
-      overflow:"auto",
+      overflow:"scroll",
       height:"60%"
       // position:"absolute"
     },
@@ -110,11 +116,10 @@ export  default function Forum(props) {
       // console.log(current_msg);
       if(current_msg!="") {
         setData([...data,{user:session.user.name,msg:current_msg}]);
-        AddData({user:session.user.name,msg:current_msg});
+        localStorage.setItem("data",JSON.stringify([...data,{user:session.user.name,msg:current_msg}]));
         setMsg("");
         static_msg="";
       }
-      
   }
 
   return <>
@@ -122,8 +127,6 @@ export  default function Forum(props) {
       <div className={classes.heading} >
           Discussion Forum
       </div>
-
-
       <div className={classes.discussion}>
       {data.map((user_data,index) => (
             <div className={classes.container} key={index}>
@@ -141,7 +144,7 @@ export  default function Forum(props) {
         className={classes.root}
         noValidate
         autoComplete="off"
-        onSubmit={(event)=>{event.preventDefault();Addcomment;}}
+        onSubmit={(event)=>{event.preventDefault();Addcomment();}}
       >    
         <TextField
           className={classes.comment_box}
