@@ -1,9 +1,16 @@
+/* .container {
+  background-image: url("../../public/images/background.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+} */
+
 .main {
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
   height: 100vh;
   align-content: center;
+  /* background-color: white; */
 }
 
 .profile {
@@ -16,6 +23,7 @@
   border-width: 2px;
   border-radius: 10px;
   width: max-content;
+  /* color: white; */
 }
 .profile_details {
   display: grid;

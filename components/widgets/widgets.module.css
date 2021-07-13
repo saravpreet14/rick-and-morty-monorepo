@@ -66,6 +66,24 @@
   padding-right: 1rem;
   /* flex-shrink: 5; */
   padding-top: 1rem;
+  background-color: lightblue !important;
+}
+.frame {
+  height: 100%;
+  border: solid;
+  border-radius: 10px;
+  border-color: #2b5496 !important;
+  /* position:"relative"; */
+}
+.heading {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  font-family: "Papyrus", "Sans Serif";
+  background-color: #2b5496 !important;
+  color: white;
+  padding: 2px;
 }
 
 .spinner {
