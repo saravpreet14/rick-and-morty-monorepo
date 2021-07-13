@@ -1,8 +1,9 @@
-var data =  [{user:"phani@123",msg:"Who created Rick and Morty?"},
-{user:"sarav@123",msg:"Justin Roiland"},
-{user:"sprinklr@123",msg:"@sarav, And also Dan Harmon"},
+var data =  [{user:"dhruv@123",msg:"Pilot episode :)"},
 {user:"aneree@123",msg:"What do you think is the best episode ?"},
-{user:"dhruv@123",msg:"Pilot episode :)"}];
+{user:"sprinklr@123",msg:"@sarav, And also Dan Harmon"},
+{user:"sarav@123",msg:"Justin Roiland"},
+{user:"phani@123",msg:"Who created Rick and Morty?"},
+];
 
  export async function getForumData(){
     //  console.log(data);
@@ -10,5 +11,5 @@ var data =  [{user:"phani@123",msg:"Who created Rick and Morty?"},
 }
 
 export function AddData(user_data){
-    data =[...data,user_data];
+    data =[user_data,...data];
 }
