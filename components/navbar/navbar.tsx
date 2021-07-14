@@ -34,14 +34,19 @@ export default function navbar(props) {
       <Toolbar id="back-to-top-anchor" />
       {auth ? props.children : null} */}
       <div className={styles.head} >
-        <div className={styles.icon} >
+        <div className={styles.icon} onClick={() => {
+          if(Router.pathname === '/') Router.reload();
+          else Router.push('/');
+        }} >
           <Image src='/rickMorty.svg' width='70' height='70' />
         </div>
-        <span className={styles.logout} >
-          <Image src='/logout.svg' width='70' height='70' layout='responsive' />
-        </span>
+        {auth ? (
+          <span className={styles.logout} onClick={() => logout().then(() => Router.push('/auth'))} >
+            <Image src='/logout.svg' width='70' height='70' layout='responsive' />
+          </span>
+        ) : null}
       </div>
-      <div className={styles.body} >{props.children}</div>
+      <div className={styles.body} >{auth || Router.pathname === '/auth' ? props.children : null }</div>
     </div>
   );
 }

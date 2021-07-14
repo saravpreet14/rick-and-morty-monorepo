@@ -15,10 +15,10 @@ export default function SearchBar(props: {
 }) {
 
   return (
-    <div className={customStyles.body} >
-      <IconButton onClick={() => window.history.back() } className={customStyles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
+    <div className={customStyles.body} style={props.isEpisode ? {backgroundColor: 'lightblue'} : null} >
+      {/* <IconButton onClick={() => window.history.back() } className={customStyles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
         <ArrowBackIosRounded />Back
-      </IconButton>
+      </IconButton> */}
       <Paper component="form" className={customStyles.main} onSubmit={props.search} >
         <InputBase
           className={customStyles.searchArea}

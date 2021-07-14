@@ -74,8 +74,8 @@ export default function Episodes(props) {
 
     return (
         <div className={styles.main}>
-            <br/><br/>
-            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); search(event.target[0].value); }} />
+            {/* <br/><br/> */}
+            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} />
             {episodesData.map(episode => {
                 return (
                     <Link href={`/episode/${episode.episode}-${episode.id}`} passHref key={episode.id} >

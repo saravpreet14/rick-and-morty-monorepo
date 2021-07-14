@@ -29,7 +29,7 @@ export default function Auth(props) {
 
   isAuth().then(isVaild => {
     if(isVaild) {
-        Router.push('/home');
+        Router.push('/');
     }
   });
 
@@ -62,7 +62,7 @@ export default function Auth(props) {
       // form is valid
       authenticate(formData.username, formData.password).then(isValid => {
           if(isValid) {
-            Router.push('/home');
+            Router.push('/');
           }
           else {
             setFormData(prevData => ({
@@ -77,10 +77,9 @@ export default function Auth(props) {
   }
 
   return (
-    <>
-    <Navbar />
-    <Container maxWidth="xs">
-      <h1 className={styles.heading} >Sign {formData.isSignUp ? "Up" : "In"}</h1>
+    <Navbar>
+    <Container maxWidth="xs" className={styles.main} >
+      {/* <h1 className={styles.heading} >Sign {formData.isSignUp ? "Up" : "In"}</h1> */}
       <form className={styles.root} noValidate autoComplete="off">
         <FormControl
           variant="outlined"
@@ -142,16 +141,16 @@ export default function Auth(props) {
             {formData.passwordErrorMessage}
           </FormHelperText>
         </FormControl>
-        <br />
-        <br />
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={() => formSubmit()}
-        >
-          Sign {formData.isSignUp ? "Up" : "In"}
-        </Button>
+        <div className={styles.button}>
+            <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => formSubmit()}
+            >
+            Sign {formData.isSignUp ? "Up" : "In"}
+            </Button>
+        </div>
         {/* <p
           className={styles.authToggle}
           onClick={() => handlePropInversion("isSignUp")}
@@ -162,6 +161,6 @@ export default function Auth(props) {
         </p> */}
       </form>
     </Container>
-    </>
+    </Navbar>
   );
 }

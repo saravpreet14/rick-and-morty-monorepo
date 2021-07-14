@@ -62,6 +62,7 @@
   height: 100%;
   margin-right: 0 !important;
   float: right;
+  cursor: pointer;
 }
 
 @media (max-width: 1000px) {
@@ -76,6 +77,9 @@
     padding: 3px 1vw;
   }
   .icon {
+    width: 44px;
+  }
+  .logout {
     width: 44px;
   }
 }
