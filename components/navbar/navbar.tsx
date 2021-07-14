@@ -5,7 +5,7 @@ import { useState } from 'react';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import { isAuth, logout } from '../../lib/auth';
 
-export default function navbar(props) {
+export default function Navbar(props) {
   const Router = useRouter();
   const [auth, setAuth] = useState(false); 
   isAuth().then(isValid => {
