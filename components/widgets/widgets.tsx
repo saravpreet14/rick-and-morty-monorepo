@@ -40,15 +40,20 @@ export default function Widgets(props) {
             <div className={styles.grid}>
 
                 <div className={[styles.fixed, styles.cell1].join(' ')} >
-                    <h2>{EpisodeData.name}</h2>
+                    <div className={styles.frame}>
+                    <div className={styles.heading} >
+                    {EpisodeData.name}
+                    </div>
                     <p><strong>Season</strong>: {Number(EpisodeData.episode.slice(1, 3))}</p>
                     <p><strong>Episode</strong>: {Number(EpisodeData.episode.slice(-2))}</p>
                     <p><strong>Air Date</strong>: {EpisodeData.air_date}</p>
+                    </div>
                 </div>
-
-                <div className={[styles.fixed, styles.cell2].join(' ')} >
-                    Characters in the epsiode:
-                    <br/>
+                <div >
+                <div className={[styles.fixed,styles.frame].join(' ')} > 
+                    <div className={styles.heading} >
+                       Characters in the epsiode:
+                    </div>
                     <div className={styles.characterArea}>
                         {EpisodeData.characters.map(character => {
                             return (
@@ -67,6 +72,7 @@ export default function Widgets(props) {
                                 </div>
                             )
                         })}
+                        </div>
                     </div>
                 </div>
 
