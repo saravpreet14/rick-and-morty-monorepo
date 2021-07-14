@@ -6,7 +6,7 @@ import { isAuth, logout } from '../../lib/auth';
 import Link from 'next/link';
 
 export default function Navbar(props) {
-  let Router = useRouter();
+  const Router = useRouter();
   const [auth, setAuth] = useState(false); 
   // if(typeof window !== 'undefined') return <></>;
   isAuth().then(isValid => {
