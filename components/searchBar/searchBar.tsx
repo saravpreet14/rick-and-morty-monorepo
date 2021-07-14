@@ -11,7 +11,8 @@ export default function SearchBar(props: {
   search: (event: React.FormEvent<HTMLDivElement>) => void,
   value: string,
   change: (string) => void,
-  isEpisode?: boolean
+  isEpisode?: boolean,
+  isWidget?: boolean,
 }) {
 
   return (

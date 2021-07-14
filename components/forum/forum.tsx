@@ -35,28 +35,35 @@ export  default function Forum(props) {
   const [session, loading] = useSession();
 
   const styles = makeStyles((theme) => ({
-    frame:{
-      height:"100%",
-      border:"solid",
-      borderRadius:"10px",
-      borderColor:"#2b5496 !important;",
-      // position:"relative",
-    },
+    // frame:{
+    //   height:"100%",
+    //   border:"solid",
+    //   borderRadius:"10px",
+    //   borderColor:"#2b5496 !important;",
+    //   // position:"relative",
+    // },
     heading: {
+      position: "sticky",
+      top: '0',
       display:"grid",
+      "z-index": "50",
       gridTemplateColumns:"auto",
       justifyContent:"space-around",
       fontSize: "1.5rem",
       fontFamily: "Papyrus, Sans Serif",
       backgroundColor:"#2b5496 !important;",
       color:"white",
-      padding:"2px"
+      padding:"2px",
+      'border-top-right-radius': '8px',
+      'border-top-left-radius': '8px',
     },
     root: {
       display: "grid",
       gridTemplateColumns:"auto",
       justifyContent:"space-around",
       margin:"3px",
+      // height: '100%',
+      overflow: 'hidden'
     },
     comment_box:{
       margin:"5px",
@@ -78,8 +85,8 @@ export  default function Forum(props) {
       width:"90%",
       marginLeft:"5%",
       marginTop:"5px",
-      overflow:"scroll",
-      height:"60%"
+      overflowY:"scroll",
+      maxHeight:"60%"
       // position:"absolute"
     },
     container:{
@@ -104,7 +111,9 @@ export  default function Forum(props) {
       fontSize : "18px",
       fontWeight: "bold",
     },
-
+    main: {
+      height: '100%',
+    }
 
   }));
   const classes = styles();
@@ -123,7 +132,7 @@ export  default function Forum(props) {
   }
 
   return <>
-  <div className={classes.frame}>
+  <div className={classes.main}>
       <div className={classes.heading} >
           Discussion Forum
       </div>

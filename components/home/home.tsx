@@ -58,8 +58,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     errorPolicy: "ignore",
   });
 
-  if (loading) 
-  return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>; //<Spinner />;
+  if (loading) return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>; //<Spinner />;
   if (error) return <Error />;
 
   function loadMore(/*isSearch:boolean, my_filter:string*/) {

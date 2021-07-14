@@ -38,6 +38,7 @@
   width: 100vw;
   background-color: #3f51b5;
   padding: 3px 3vw;
+  text-align: center;
 }
 
 .body {
@@ -65,6 +66,31 @@
   cursor: pointer;
 }
 
+.navigation {
+  min-height: 64px;
+  margin: auto;
+  vertical-align: middle;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  grid-gap: 5vw;
+  font-size: 2.2rem;
+  color: white;
+}
+
+.navlink {
+  cursor: pointer;
+}
+
+.navlink:hover {
+  color: orange;
+}
+
+.active {
+  color: orange;
+  text-decoration: underline orange;
+}
+
 @media (max-width: 1000px) {
   /* .authButton {
     font-size: 1.4rem;
@@ -81,5 +107,9 @@
   }
   .logout {
     width: 44px;
+  }
+  .navigation {
+    min-height: 44px;
+    font-size: 1.5rem;
   }
 }

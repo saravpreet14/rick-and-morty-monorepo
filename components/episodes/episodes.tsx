@@ -32,28 +32,27 @@ export default function Episodes(props) {
     });
 
     useEffect(() => {
+        function loadMore() {
+            if(!data || !data.episodes) return;
+            const nextPage = data.episodes.info.next;
+            if(!nextPage) return;
+            fetchMore({
+                variables: {page: nextPage, filter: {name: isSearch ? myFilter : ''}},
+                updateQuery: (prevResult:{episodes: {results}}, { fetchMoreResult }) => {
+                    fetchMoreResult.episodes.results = [
+                      ...prevResult.episodes.results,
+                      ...fetchMoreResult.episodes.results,
+                    ];
+                    return fetchMoreResult;
+                },
+            }).catch(error => null);
+        }
         loadMore();
     }, [data]);
 
     if (loading) 
-    return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>;
+    return <div className={styles.spinner} >{/*<CircularProgress className={styles.progress} />*/}</div>;
     if (error) return <Error />;
-
-    function loadMore() {
-        if(!data || !data.episodes) return;
-        const nextPage = data.episodes.info.next;
-        if(!nextPage) return;
-        fetchMore({
-            variables: {page: nextPage, filter: {name: isSearch ? myFilter : ''}},
-            updateQuery: (prevResult:{episodes: {results}}, { fetchMoreResult }) => {
-                fetchMoreResult.episodes.results = [
-                  ...prevResult.episodes.results,
-                  ...fetchMoreResult.episodes.results,
-                ];
-                return fetchMoreResult;
-            },
-        }).catch(error => null);
-    }
 
     function search(query: string) {
         static_filter = query;
@@ -78,10 +77,10 @@ export default function Episodes(props) {
             <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} />
             {episodesData.map(episode => {
                 return (
-                    <Link href={`/episode/${episode.episode}-${episode.id}`} passHref key={episode.id} >
-                    <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} /*onClick={() => props.select(episodesData[Number(episode.id) - 1])}*/ key={episode.id}>
-                        {`${episode.episode} - ${episode.name}`}
-                    </div>
+                    <Link href={`/episode/${episode.id}`} passHref key={episode.id} >
+                        <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} /*onClick={() => props.select(episodesData[Number(episode.id) - 1])}*/ key={episode.id}>
+                            {`${episode.episode} - ${episode.name}`}
+                        </div>
                     </Link>
                 )
             })}

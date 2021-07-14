@@ -88,7 +88,25 @@ export default function MyCharacter(props: { params: { id: string } }) {
         <div className={styles.container1}>
           <div className={styles.profile_image}>
             <Image src={image} alt={name} width="300" height="300" />
+    {/* <div className={styles.mainBlock} >
+      <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
+        <ArrowBackIosRounded />Back
+      </IconButton>
+    <div className={styles.root} >
+      <div className={styles.container1}>
+        <div className={styles.profile_image}>
+          <Image src={image} alt={name} width="300" height="300" />
+        </div>
+        <h2 className={styles.name}>{name}</h2>
+        <div className={styles.info}>
+          <div className={styles.heading_box}>
+            <h2 className={styles.heading}>INFO</h2>
+            <div className={styles.line}></div>
           </div>
+          <div>
+            {/* <div className={styles({status})}></div> /}
+           <div>{`${status} - ${species}`}</div>
+          </div> */}
           <h2 className={styles.name}>{name}</h2>
           <div className={styles.info}>
             <div className={styles.heading_box}>
@@ -117,21 +135,22 @@ export default function MyCharacter(props: { params: { id: string } }) {
             </div>
           </div>
         </div>
-        <div className={styles.container2}>
-          <div className={styles.heading_box}>
-            <h2 className={styles.heading}>FEATURED IN</h2>
-            <div className={styles.line}></div>
-          </div>
-          {episode.map((episode) => (
-            <Link href={"/episode/" + episode.episode + "-" +episode.id} key={episode.id}  passHref>
-              <div className={styles.episode}>            
-                <p className={styles.episode_name}>{`${episode.episode} - ${episode.name}`}</p>
-                <p className={styles.date}>{episode.air_date}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
       </div>
+      <div className={styles.container2}>
+        <div className={styles.heading_box}>
+          <h2 className={styles.heading}>FEATURED IN</h2>
+          <div className={styles.line}></div>
+        </div>
+        {episode.map((episode) => (
+          <Link href={`/episode/${episode.id}`} passHref key={episode.id} >
+            <div key={episode.id} className={styles.episode}>
+              <p className={styles.episode_name}>{`${episode.episode} - ${episode.name}`}</p>
+              <p className={styles.date}>{episode.air_date}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
     </div>
   );
 }

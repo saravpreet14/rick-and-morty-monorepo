@@ -1,18 +1,10 @@
 .fixed {
-  /* z-index: 1500; */
-  /* width: 25vw;
-  height: 38.5vh; */
-  /* position: fixed; */
   margin: 0;
   background-color: white;
   border-radius: 10px;
-  padding: 0.8rem;
-  overflow: auto;
+  overflow: hidden;
   margin: 1rem;
-  /* width: 26rem;*/
-  /* min-height: 20rem; */
   height: 26rem;
-  /* min-height: 400px; */
   flex-grow: 1;
   border: 1px solid #2b5496;
 }
@@ -20,7 +12,7 @@
 .grid {
   display: grid;
   /* grid-template-rows: 1fr 1fr; */
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   /* display: flex;
   flex-wrap: wrap; */
   overflow: scroll;
@@ -53,9 +45,14 @@
   overflow: hidden;
 }
 
-.characterArea {
+/* .characterArea {
   display: flex;
   flex-wrap: wrap;
+} */
+
+.widgetContent {
+  height: 23.5rem;
+  /* overflow-y: scroll; */
 }
 
 .backButton {
@@ -65,10 +62,11 @@
 }
 
 .main {
-  padding-right: 1rem;
-  /* flex-shrink: 5; */
-  padding-top: 1rem;
-  background-color: lightblue !important;
+  /* padding-right: 1rem;
+  padding-top: 1rem; */
+  height: 100%;
+  overflow-y: scroll;
+  /* background-color: lightblue !important; */
 }
 .frame {
   height: 100%;
@@ -82,10 +80,21 @@
   grid-template-columns: auto;
   justify-content: space-around;
   font-size: 1.5rem;
+  height: 2.4rem;
   font-family: "Papyrus", "Sans Serif";
   background-color: #2b5496 !important;
   color: white;
   padding: 2px;
+  /* position: sticky;
+  top: 0;
+  z-index: 150; */
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.episodeName {
+  text-align: center;
+  margin: 0;
 }
 
 .spinner {
@@ -94,22 +103,32 @@
   margin-top: 20vh;
 }
 
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.content {
+  font-size: 1.3rem;
+  padding: 1rem;
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 150;
+  background-color: white;
+}
+
+.iconBack {
+  border-radius: 5px;
+  /* height: 30px; */
+}
+
+.iconBack:hover {
+  color: #3f51b5;
+  background-color: white;
 }
 
 @media (max-width: 1000px) {
-  /* .grid {
-    height: 70vh;
-  } */
+  .grid {
+    grid-template-columns: 1fr;
+  }
   .main {
     top: 64px;
   }

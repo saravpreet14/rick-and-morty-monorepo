@@ -8,9 +8,9 @@ export default function TitlebarGridList(props: {
   characters: {
     id: string;
     name: string;
-    image: string;
+    image?: string;
   }[];
-  imageSize: {
+  imageSize?: {
     width: number;
     height: number;
   };
@@ -25,7 +25,7 @@ export default function TitlebarGridList(props: {
                         <div className={styles.image} >
                             <Image width='300' height='300' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} alt={character.name} />
                         </div>
-                        <div className={styles.name} style={{fontSize: props.isWidget ? '0.7rem' : ''}} >{character.name}</div>
+                        <div className={styles.name} style={props.isWidget ? {fontSize: '0.7rem', padding: '5px'} : null} >{character.name}</div>
                     </div>
                 </Link>
             ))}

@@ -3,6 +3,8 @@ import { signIn, signOut, useSession } from "next-auth/client";
 import Navbar from "../../components/navbar/navbar";
 import { GetServerSideProps } from "next";
 import Widgets from '../../components/widgets/widgets';
+import Episodes from '../../components/episodes/episodes';
+import styles from '../../styles/Home.module.css';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
@@ -19,17 +21,13 @@ export default function MyCharacter({
     id: string;
   };
 }) {
-  // console.log(props);
-  const [session, loading] = useSession();
-  var authFunction;
-  if (session) authFunction = signOut;
-  else authFunction = signIn;
-
+  
   return (
-    <>
-      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
+    <Navbar >
+      <div className={styles.partition} >
+        <Episodes selected={params.id} />
         <Widgets {...{ params }} />
-      </Navbar>
-    </>
+      </div>
+    </Navbar>
   );
 }
