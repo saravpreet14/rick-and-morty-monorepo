@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
-import Spinner from "../../components/spinner/spinner";
 import { Button, CircularProgress } from "@material-ui/core";
 import Error from "../error/error";
 

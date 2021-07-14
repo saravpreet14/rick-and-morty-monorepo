@@ -36,8 +36,9 @@
 }
 
 .homeMain {
-  height: 95vh;
-  overflow: scroll;
+  /* height: 95vh; */
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .spinner {
@@ -55,9 +56,6 @@
   .partition {
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr;
-  }
-  .homeMain {
-    height: 83vh;
   }
 }
 

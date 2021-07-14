@@ -87,8 +87,7 @@ export default function Widgets(props) {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab corrupti reprehenderit ipsam quasi error minima praesentium, odit eveniet quaerat nesciunt quibusdam, fugiat sunt aspernatur asperiores doloremque a nemo distinctio voluptatem.
                 </div>
             </div>
-            <br/>
-            <div className={styles.backButton}>
+            <div className={styles.backButton}> 
                 <Link href='/' passHref>
                     <Button variant="contained" color="primary" size="large" onClick={props.back}>
                         <strong>Back</strong>

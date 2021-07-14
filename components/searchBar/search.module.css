@@ -5,6 +5,44 @@
   /* overflow: hidden; */
 }
 
+.main {
+  width: 90vw;
+  max-width: 400px;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  border: 1px solid blue;
+  float: inline-start;
+  /* position: sticky; */
+}
+
+.body {
+  width: 100%;
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  padding-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  /* display: flex; */
+  background-color: white;
+}
+
+.searchArea {
+  flex-grow: 1;
+  padding: 2px 10px;
+}
+
+.iconBack {
+  border-radius: 5px;
+  /* height: 30px; */
+}
+
+.iconBack:hover {
+  color: #3f51b5;
+  background-color: white;
+}
+
 @media (max-width: 1000px) {
   .episodeMain {
     min-width: 10rem;

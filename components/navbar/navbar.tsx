@@ -1,35 +1,47 @@
 import styles from "./navbar.module.css";
-import Router from "next/router";
-import { CssBaseline, AppBar, Toolbar } from "@material-ui/core";
+import { useRouter } from "next/router";
+import Image from 'next/image';
+import { useState } from 'react';
+import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
+import { isAuth, logout } from '../../lib/auth';
 
 export default function navbar(props) {
+  const Router = useRouter();
+  const [auth, setAuth] = useState(false); 
+  isAuth().then(isValid => {
+    if(isValid) setAuth(true);
+    else if(Router.pathname !== '/auth') Router.push('/auth');
+  });
+
   return (
-    <>
-      <CssBaseline />
-      <AppBar>
-        <Toolbar>
-          <span className={styles.siteName} onClick={() => {
-              if (Router.pathname === "/") Router.reload();
-              else Router.push("/");
-            }}>
+    <div className={styles.main} >
+      {/* <AppBar> */}
+        {/* <Toolbar>
+          <span
+            className={styles.siteName}
+            onClick={() => {
+              if(Router.pathname === "/home") Router.reload();
+              else Router.push("/home");
+            }}
+          >
             Rick and Morty
           </span>
-          <span className={styles.authButton} onClick={props.auth}>
-            {props.isAuth ? "Logout" : "Sign In"}
+          <span className={styles.authButton} onClick={() => auth ? logout().then(() => Router.push('/auth')) : Router.push('/auth')} >
+            {auth ? "Logout" : "Sign In"}
           </span>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
-      {props.isAuth ? (
-        props.children
-      ) : (
-        <>
-          <br />
-          <br />
-          <br />
-          <h1 className={styles.signInMessage}>Sign In to continue</h1>
-        </>
-      )}
-    </>
+      {auth ? props.children : null} */}
+      <div className={styles.head} >
+        <div className={styles.icon} >
+          <Image src='/rickMorty.svg' width='70' height='70' />
+        </div>
+        <span className={styles.logout} >
+          <Image src='/logout.svg' width='70' height='70' layout='responsive' />
+        </span>
+      </div>
+      <div className={styles.body} >{props.children}</div>
+    </div>
   );
 }
