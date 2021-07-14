@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
-import { Button, CircularProgress } from "@material-ui/core";
+import { IconButton, CircularProgress } from "@material-ui/core";
+import { ArrowBackIosRounded } from '@material-ui/icons';
 import Error from "../error/error";
 import { classicNameResolver } from "typescript";
 import Episodes from "../episodes/episodes";
@@ -75,6 +76,10 @@ export default function MyCharacter(props: { params: { id: string } }) {
   const { name, image, gender, location, origin, species, status,episode } =
     data.charactersByIds[0];
   return (
+    <div className={styles.mainBlock} >
+      <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
+        <ArrowBackIosRounded />Back
+      </IconButton>
     <div className={styles.root} >
       <div className={styles.container1}>
         <div className={styles.profile_image}>
@@ -114,12 +119,15 @@ export default function MyCharacter(props: { params: { id: string } }) {
           <div className={styles.line}></div>
         </div>
         {episode.map((episode) => (
-          <div key={episode.id} className={styles.episode}>
-            <p className={styles.episode_name}>{`${episode.episode} - ${episode.name}`}</p>
-            <p className={styles.date}>{episode.air_date}</p>
-          </div>
+          <Link href={`/episode/${episode.id}`} passHref key={episode.id} >
+            <div key={episode.id} className={styles.episode}>
+              <p className={styles.episode_name}>{`${episode.episode} - ${episode.name}`}</p>
+              <p className={styles.date}>{episode.air_date}</p>
+            </div>
+          </Link>
         ))}
       </div>
+    </div>
     </div>
   );
 }

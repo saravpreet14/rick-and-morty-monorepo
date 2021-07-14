@@ -1,13 +1,14 @@
 import styles from "./navbar.module.css";
 import { useRouter } from "next/router";
 import Image from 'next/image';
-import { useState } from 'react';
-import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
+import React, { useState } from 'react';
 import { isAuth, logout } from '../../lib/auth';
+import Link from 'next/link';
 
-export default function navbar(props) {
-  const Router = useRouter();
+export default function Navbar(props) {
+  let Router = useRouter();
   const [auth, setAuth] = useState(false); 
+  // if(typeof window !== 'undefined') return <></>;
   isAuth().then(isValid => {
     if(isValid) setAuth(true);
     else if(Router.pathname !== '/auth') Router.push('/auth');
@@ -15,24 +16,6 @@ export default function navbar(props) {
 
   return (
     <div className={styles.main} >
-      {/* <AppBar> */}
-        {/* <Toolbar>
-          <span
-            className={styles.siteName}
-            onClick={() => {
-              if(Router.pathname === "/home") Router.reload();
-              else Router.push("/home");
-            }}
-          >
-            Rick and Morty
-          </span>
-          <span className={styles.authButton} onClick={() => auth ? logout().then(() => Router.push('/auth')) : Router.push('/auth')} >
-            {auth ? "Logout" : "Sign In"}
-          </span>
-        </Toolbar>
-      </AppBar>
-      <Toolbar id="back-to-top-anchor" />
-      {auth ? props.children : null} */}
       <div className={styles.head} >
         <div className={styles.icon} onClick={() => {
           if(Router.pathname === '/') Router.reload();
@@ -40,6 +23,15 @@ export default function navbar(props) {
         }} >
           <Image src='/rickMorty.svg' width='70' height='70' />
         </div>
+        {console.log(Router.pathname)}
+        {auth ? (<span className={styles.navigation} >
+          <Link href='/characters' passHref >
+            <span className={[styles.navlink, Router.pathname.indexOf('character') !== -1 ? styles.active : null].join(' ')} >Characters</span>
+          </Link>
+          <Link href='/episode/1' passHref >
+            <span className={[styles.navlink, Router.pathname.indexOf('episode') !== -1 ? styles.active : null].join(' ')} >Episodes</span>
+          </Link>
+        </span>): null}
         {auth ? (
           <span className={styles.logout} onClick={() => logout().then(() => Router.push('/auth'))} >
             <Image src='/logout.svg' width='70' height='70' layout='responsive' />

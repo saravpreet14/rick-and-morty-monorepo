@@ -2,14 +2,16 @@ import styles from './widgets.module.css';
 import Link from 'next/link';
 import Image from 'next/image'
 import Home from '../home/home'
-import { Button, CircularProgress } from '@material-ui/core';
+import { IconButton, CircularProgress } from '@material-ui/core';
+import { ArrowBackIosRounded } from "@material-ui/icons";
 import { useQuery, gql } from "@apollo/client";
 import Error from '../error/error';
 import Forum from "../forum/forum";
+import CharacterList from '../charList/characterList';
 
 export default function Widgets(props) {
     const params = props.params;
-    const id = params.id.split("-").slice(-1)[0];
+    const id = params.id;//.split("-").slice(-1)[0];
 
     const Episode_data = gql`
         query EpisodeById($ids: [ID!]!) {
@@ -37,69 +39,55 @@ export default function Widgets(props) {
     
     return (
         <div className={styles.main}>
+            <div className={styles.sticky} >
+                <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
+                    <ArrowBackIosRounded />Back
+                </IconButton>
+                <h1 className={styles.episodeName} >{EpisodeData.name}</h1>
+            </div>
+
             <div className={styles.grid}>
 
                 <div className={[styles.fixed, styles.cell1].join(' ')} >
-                    <div className={styles.frame}>
-                    <div className={styles.heading} >
-                    {EpisodeData.name}
-                    </div>
-                    <p><strong>Season</strong>: {Number(EpisodeData.episode.slice(1, 3))}</p>
-                    <p><strong>Episode</strong>: {Number(EpisodeData.episode.slice(-2))}</p>
-                    <p><strong>Air Date</strong>: {EpisodeData.air_date}</p>
+                    <div className={styles.heading} >Basic Info</div>
+                    <div className={styles.content} >
+                        <p><strong>Season: </strong>{Number(EpisodeData.episode.slice(1, 3))}</p>
+                        <p><strong>Episode: </strong>{Number(EpisodeData.episode.slice(-2))}</p>
+                        <p><strong>Air Date: </strong>{EpisodeData.air_date}</p>
+                        <p><strong>Imdb Rating: </strong>{(8 + Math.random()*2).toFixed(1)}</p>
                     </div>
                 </div>
-                <div >
-                <div className={[styles.fixed,styles.frame].join(' ')} > 
+
+                <div className={[styles.fixed].join(' ')} > 
                     <div className={styles.heading} >
-                       Characters in the epsiode:
+                       Characters in the epsiode
                     </div>
-                    <div className={styles.characterArea}>
-                        {EpisodeData.characters.map(character => {
-                            return (
-                                <div className={styles.character} key = {character.id}>
-                                    <Link href={
-                                        "/character/" +
-                                        character.name.replace(" ", "") +
-                                        "-" +
-                                        character.id
-                                    
-                                    }
-                                    passHref>
-                                        <Image width='80' height='80' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} alt={character.name} className={styles.icon} />
-                                    </Link>
-                                    <p className={styles.characterName} key={character.id}>{character.name}</p>
-                                </div>
-                            )
-                        })}
-                        </div>
+                    <div className={styles.widgetContent} style={{overflowY: "scroll"}} >
+                        <CharacterList characters={EpisodeData.characters} isWidget />
                     </div>
+                </div>
+                
+                <div className={[styles.fixed, styles.cell4].join(' ')} >
+                    {/* <div className={styles.widgetContent}> */}
+                        <Forum/>
+                    {/* </div> */}
                 </div>
 
                 <div className={[styles.fixed, styles.cell3].join(' ')} >
-                    <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget />
+                    <div className={styles.heading} >Home</div>
+                    <div className={styles.widgetContent}>
+                        <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget />
+                    </div>
                 </div>
 
-            <div className={[styles.fixed, styles.cell4].join(' ')} >
-               <Forum/>
             </div>
-
-                <div className={[styles.fixed, styles.cell5].join(' ')} >
-                    <h1>Imdb Rating</h1>
-                    <p style={{fontSize: '1.3rem'}}>The {EpisodeData.episode} of Rick and Morty, named {EpisodeData.name} was rated <strong>{(8 + Math.random()*2).toFixed(1)} out of 10</strong></p>
-                </div>
-
-                <div className={[styles.fixed, styles.cell6].join(' ')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab corrupti reprehenderit ipsam quasi error minima praesentium, odit eveniet quaerat nesciunt quibusdam, fugiat sunt aspernatur asperiores doloremque a nemo distinctio voluptatem.
-                </div>
-            </div>
-            <div className={styles.backButton}> 
+            {/* <div className={styles.backButton}> 
                 <Link href='/' passHref>
                     <Button variant="contained" color="primary" size="large" onClick={props.back}>
                         <strong>Back</strong>
                     </Button>
                 </Link>
-            </div>
+            </div> */}
         </div>
     );
 }
