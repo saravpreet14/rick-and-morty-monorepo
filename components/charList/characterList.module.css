@@ -1,39 +1,64 @@
 .main {
-    display: flex;
-    margin: 10px 8%;
-    /* padding-top: 60px; */
-    /* top: 100px; */
-    margin-bottom: 0;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  margin: 10px 8%;
+  /* padding-top: 60px; */
+  /* top: 100px; */
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-    border-radius: 10px;
-    padding: 0;
-    margin: 1.5rem;
-    overflow: hidden;
-    cursor: pointer;
-    max-width: 300px;
+  border-radius: 10px;
+  padding: 0;
+  margin: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  max-width: 300px;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 .card:hover {
-    box-shadow: 0 0 15px gray;
+  box-shadow: 0 0 15px gray;
 }
 
 .name {
-    background-color: rgba(20, 20, 20, 0.75);
-    margin: 0;
-    padding: 10px;
-    font-size: 1.3rem;
-    color: white;
-    margin-top: -3px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  background-color: rgba(20, 20, 20, 0.75);
+  margin: 0;
+  padding: 10px;
+  font-size: 1.3rem;
+  color: white;
+  margin-top: -3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .image {
-    margin: 0;
-    padding: 0;
-    border-width: 0;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
 }
+.noData {
+  text-align: center;
+  font-size: 2rem;
+}
+.loadSize {
+  height: 300px;
+  width: 300px;
+}
+
+/* @media (max-width: 580px) {
+  .loadSize {
+    height: 85px;
+    width: 85px;
+  }
+  .card {
+    max-width: 85px;
+  }
+  .name {
+    padding: 2px;
+    font-size: 0.7rem;
+    margin-top: -3px;
+  }
+} */

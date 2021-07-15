@@ -16,7 +16,7 @@ interface characterData {
 var isSearch:boolean = false;
 var static_filter:string = "";
 
-export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean}) {
+export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean, placeholder:string}) {
   const trackScrolling = (event) => {
     var element = event.target;
     // console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
@@ -119,7 +119,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <br /><br /> */}
-      <SearchBar search={(event: React.FormEvent<HTMLDivElement>) => {event.preventDefault(); search(event.target[0].value)}} value={my_filter} change={(value:string) => handleSearchChange(value)} />
+      <SearchBar search={(event: React.FormEvent<HTMLDivElement>) => {event.preventDefault(); search(event.target[0].value)}} value={my_filter} change={(value:string) => handleSearchChange(value)} placeholder={props.placeholder}/>
         {isSearch ? (
           <div className={styles.loadMore}>
           <Button

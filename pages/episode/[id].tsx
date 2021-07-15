@@ -25,7 +25,7 @@ export default function MyCharacter({
   return (
     <Navbar >
       <div className={styles.partition} >
-        <Episodes selected={params.id} />
+        <Episodes selected={params.id} placeholder="Search Episode Name"/>
         <Widgets {...{ params }} />
       </div>
     </Navbar>
