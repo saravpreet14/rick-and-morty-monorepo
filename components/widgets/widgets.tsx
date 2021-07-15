@@ -51,15 +51,31 @@ export default function Widgets(props) {
             <div className={styles.grid}>
             {loading ? 
                 <>
-                    {[1, 2, 3, 4].map(t => (
+                    {/* {[1, 2, 3, 4].map(t => (
                         <div className={styles.fixed} style={{borderWidth: '0'}} key={t} >
                             <Skeleton count={1} height={500} key={t} />
                         </div>
-                    ))}
+                    ))} */}
+                    <div className={styles.block1} >
+                        <div className={styles.fixed} style={{borderWidth: '0'}} key={1} >
+                            <Skeleton count={1} height={2000} />
+                        </div>
+                        <div className={styles.fixed} style={{borderWidth: '0'}} key={2} >
+                            <Skeleton count={1} height={2000} />
+                        </div>
+                    </div>
+                    <div className={styles.block2} >  
+                        <div className={styles.fixed} style={{borderWidth: '0'}} key={3} >
+                            <Skeleton count={1} height={2000} />
+                        </div>
+                        <div className={styles.fixed} style={{borderWidth: '0'}} key={4} >
+                            <Skeleton count={1} height={2000} />
+                        </div>
+                    </div>
                 </> :
                 <>
+                <div className={styles.block1} >
                 <div className={[styles.fixed, styles.cell1].join(' ')} >
-                {/* {loading ? <Skeleton count={1} height={500} /> : (<> */}
                     <div className={styles.heading} >Basic Info</div>
                     <div className={styles.content} >
                         <p><strong>Name: </strong>{EpisodeData.name}</p>
@@ -71,18 +87,18 @@ export default function Widgets(props) {
                 </div>
 
                 <div className={[styles.fixed].join(' ')} > 
-                {/* {loading ? <Skeleton count={1} height={500} /> : (<> */}
                     <div className={styles.heading} >
                        Characters in the epsiode
                     </div>
                     <div className={styles.widgetContent} style={{overflowY: "scroll"}} >
                         <CharacterList characters={EpisodeData.characters} isWidget />
                     </div>
-                {/* </>)} */}
                 </div>
-                
+                </div>
+
+                <div className={styles.block2} >  
                 <div className={[styles.fixed, styles.cell4].join(' ')} >
-                    <Forum/>
+                    {/* <Forum/> */}
                 </div>
 
                 <div className={[styles.fixed, styles.cell3].join(' ')} >
@@ -90,6 +106,7 @@ export default function Widgets(props) {
                     <div className={styles.widgetContent}>
                         <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget placeholder="Search Character Name"/>
                     </div>
+                </div>
                 </div>
 
             </>}

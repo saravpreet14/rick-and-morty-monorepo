@@ -136,7 +136,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <br /><br /> */}
-      <SearchBar search={(event: React.FormEvent<HTMLDivElement>) => {event.preventDefault(); search(event.target[0].value)}} value={my_filter} change={(value:string) => handleSearchChange(value)} placeholder={props.placeholder}/>
+      <SearchBar isWidget={props.isWidget} search={(event: React.FormEvent<HTMLDivElement>) => {event.preventDefault(); search(event.target[0].value)}} value={my_filter} change={(value:string) => handleSearchChange(value)} placeholder={props.placeholder}/>
         {isSearch ? (
           <div className={styles.loadMore}>
           <Button

@@ -16,7 +16,7 @@
   overflow: hidden;
   cursor: pointer;
   max-width: 300px;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr;
 }
 .card:hover {

@@ -21,7 +21,7 @@ export default function TitlebarGridList(props: {
             {/* <Link href='/characters'><a>Here</a></Link> */}
             {props.characters.map(character => (
                 <Link href={`/character/${character.name.replace(' ', '')}-${character.id}`} key={character.id} passHref >
-                    <div className={styles.card} key={character.id} style={props.isWidget ? {maxWidth: '160px', margin: '0.8rem'} : null} >
+                    <div className={styles.card} key={character.id} style={props.isWidget ? {maxWidth: '150px', margin: '0.8rem'} : null} >
                         <div className={styles.image} >
                             <Image width='300' height='300' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} alt={character.name} />
                         </div>

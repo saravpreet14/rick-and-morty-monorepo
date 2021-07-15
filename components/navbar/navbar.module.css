@@ -96,12 +96,6 @@
 }
 
 @media (max-width: 1000px) {
-  /* .authButton {
-    font-size: 1.4rem;
-  }
-  .siteName {
-    font-size: 1.6rem;
-  } */
   .head {
     height: 50px;
     padding: 3px 1vw;
@@ -111,7 +105,7 @@
   }
   .navigation {
     min-height: 44px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .icon {
     width: 36px;

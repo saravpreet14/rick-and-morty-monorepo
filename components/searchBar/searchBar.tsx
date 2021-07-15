@@ -17,7 +17,7 @@ export default function SearchBar(props: {
 }) {
 
   return (
-    <div className={customStyles.body} style={props.isEpisode ? {backgroundColor: 'lightblue'} : null} >
+    <div className={customStyles.body} style={props.isEpisode ? {backgroundColor: 'transparent'} : props.isWidget ? {backgroundColor: 'white'} : null} >
       {/* <IconButton onClick={() => window.history.back() } className={customStyles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
         <ArrowBackIosRounded />Back
       </IconButton> */}
