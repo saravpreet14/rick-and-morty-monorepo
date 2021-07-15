@@ -81,14 +81,16 @@ export  default function Forum(props) {
       // margin:"5px",
       width:"90%",
       margin:"auto",
-      marginTop: "5px",
+      marginTop: "10px",
     },
     button:{
-      margin:"5px",
-      // position:"absolute",
-      right:"-150px",
+      // margin:"5px",
+      // // position:"absolute",
+      // right:"-150px",
       // maxHeight:"20px",
-      maxWidth:"fit-content"
+      maxWidth:"fit-content",
+      margin: "auto",
+      marginTop: "5px",
     },
     discussion:{
       // borderRadius:"5px",
