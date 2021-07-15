@@ -67,3 +67,26 @@
     grid-template-columns: 4fr 7fr;
   }
 } */
+
+.skeletonSearch {
+  width: 90%;
+  max-width: 400px;
+  min-width: 150px;
+  padding: 15px;
+}
+
+.skeletonImage {
+  margin: 1.5rem;
+}
+
+.skeletonList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 8%;
+}
+
+.skeletonHome {
+  display: grid;
+  place-items: center;
+}

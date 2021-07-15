@@ -8,7 +8,10 @@ import Link from 'next/link';
 export default function Navbar(props) {
   const Router = useRouter();
   const [auth, setAuth] = useState(false); 
-  // if(typeof window !== 'undefined') return <></>;
+  const [path, setPath] = useState('');
+  if(typeof window !== 'undefined' && path !== Router.pathname) {
+    setPath(Router.pathname);
+  }
   isAuth().then(isValid => {
     if(isValid) setAuth(true);
     else if(Router.pathname !== '/auth') Router.push('/auth');
@@ -23,13 +26,12 @@ export default function Navbar(props) {
         }} >
           <Image src='/rickMorty.svg' width='70' height='70' />
         </div>
-        {console.log(Router.pathname)}
         {auth ? (<span className={styles.navigation} >
           <Link href='/characters' passHref >
-            <span className={[styles.navlink, Router.pathname.indexOf('character') !== -1 ? styles.active : null].join(' ')} >Characters</span>
+            <span className={[styles.navlink, path.indexOf('character') !== -1 ? styles.active : null].join(' ')} >Characters</span>
           </Link>
           <Link href='/episode/1' passHref >
-            <span className={[styles.navlink, Router.pathname.indexOf('episode') !== -1 ? styles.active : null].join(' ')} >Episodes</span>
+            <span className={[styles.navlink, path.indexOf('episode') !== -1 ? styles.active : null].join(' ')} >Episodes</span>
           </Link>
         </span>): null}
         {auth ? (

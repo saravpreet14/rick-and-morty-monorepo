@@ -132,4 +132,7 @@
   .main {
     top: 64px;
   }
+  .episodeName {
+    font-size: 1.6rem;
+  }
 }

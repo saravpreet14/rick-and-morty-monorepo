@@ -8,6 +8,7 @@ import { useQuery, gql } from "@apollo/client";
 import Error from '../error/error';
 import Forum from "../forum/forum";
 import CharacterList from '../charList/characterList';
+import Skeleton from 'react-loading-skeleton';
 
 export default function Widgets(props) {
     const params = props.params;
@@ -32,10 +33,11 @@ export default function Widgets(props) {
     variables: { ids: id },
   });
   const { loading, error, data } = responseData;
-  if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
+//   if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
   if (error) return <Error />;
 
-    const EpisodeData = data.episodesByIds[0];
+    let EpisodeData = null;
+    if(!loading) EpisodeData = data.episodesByIds[0];
     
     return (
         <div className={styles.main}>
@@ -43,12 +45,21 @@ export default function Widgets(props) {
                 <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
                     <ArrowBackIosRounded />Back
                 </IconButton>
-                <h1 className={styles.episodeName} >{EpisodeData.name}</h1>
+                <h1 className={styles.episodeName} >{loading ? <Skeleton count={1} height={50} /> : EpisodeData.name}</h1>
             </div>
 
             <div className={styles.grid}>
-
+            {loading ? 
+                <>
+                    {[1, 2, 3, 4].map(t => (
+                        <div className={styles.fixed} style={{borderWidth: '0'}} key={t} >
+                            <Skeleton count={1} height={500} key={t} />
+                        </div>
+                    ))}
+                </> :
+                <>
                 <div className={[styles.fixed, styles.cell1].join(' ')} >
+                {/* {loading ? <Skeleton count={1} height={500} /> : (<> */}
                     <div className={styles.heading} >Basic Info</div>
                     <div className={styles.content} >
                         <p><strong>Season: </strong>{Number(EpisodeData.episode.slice(1, 3))}</p>
@@ -59,18 +70,18 @@ export default function Widgets(props) {
                 </div>
 
                 <div className={[styles.fixed].join(' ')} > 
+                {/* {loading ? <Skeleton count={1} height={500} /> : (<> */}
                     <div className={styles.heading} >
                        Characters in the epsiode
                     </div>
                     <div className={styles.widgetContent} style={{overflowY: "scroll"}} >
                         <CharacterList characters={EpisodeData.characters} isWidget />
                     </div>
+                {/* </>)} */}
                 </div>
                 
                 <div className={[styles.fixed, styles.cell4].join(' ')} >
-                    {/* <div className={styles.widgetContent}> */}
-                        <Forum/>
-                    {/* </div> */}
+                    <Forum/>
                 </div>
 
                 <div className={[styles.fixed, styles.cell3].join(' ')} >
@@ -80,7 +91,10 @@ export default function Widgets(props) {
                     </div>
                 </div>
 
-            </div>
+            </>}
+            </div> 
+
+                
             {/* <div className={styles.backButton}> 
                 <Link href='/' passHref>
                     <Button variant="contained" color="primary" size="large" onClick={props.back}>

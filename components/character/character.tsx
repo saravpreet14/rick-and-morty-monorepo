@@ -72,7 +72,9 @@ export default function MyCharacter(props: { params: { id: string } }) {
     variables: { ids: id },
   });
   const { loading, error, data } = responseData;
-  if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
+  if (loading) {
+    return <div className={styles.spinner} ><CircularProgress /></div>;
+  }
   if (error) return <Error />;
   // console.log(data.charactersByIds[0]);
   const { name, image, gender, location, origin, species, status,episode } =
@@ -87,7 +89,9 @@ export default function MyCharacter(props: { params: { id: string } }) {
       <div className={styles.root} >
         <div className={styles.container1}>
           <div className={styles.profile_image}>
-            <Image src={image} alt={name} width="300" height="300" />
+            <div className={styles.image}>
+              <Image src={image} alt={name} width="300" height="300" />
+            </div>
     {/* <div className={styles.mainBlock} >
       <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
         <ArrowBackIosRounded />Back
@@ -109,12 +113,12 @@ export default function MyCharacter(props: { params: { id: string } }) {
           </div> */}
           <h2 className={styles.name}>{name}</h2>
           <div className={styles.info}>
-            <div className={styles.heading_box}>
+            {/* <div className={styles.heading_box}>
               <h2 className={styles.heading}>INFO</h2>
               <div className={styles.line}></div>
-            </div>
+            </div> */}
             <div {...{style:{display:"flex"}}} >
-              <div {...{style:{borderRadius:"50%",border:"solid 5px",width:"10px",height:"10px",borderColor:colormap[status]}}}></div>
+              <div {...{style:{borderRadius:"50%",border:"solid 5px",width:"10px",height:"10px",borderColor:colormap[status], margin: 'auto 0'}}}></div>
               <div>{`${status} - ${species}`}</div>
             </div>
             <div className={styles.section}>
