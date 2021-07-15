@@ -40,7 +40,7 @@ export default function Navbar(props) {
           </span>
         ) : null}
       </div>
-      <div className={styles.body} >{auth || Router.pathname === '/auth' ? props.children : null }</div>
+      <div className={styles.body} >{auth || path === '/auth' ? props.children : null }</div>
     </div>
   );
 }
