@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GridList, GridListTile, GridListTileBar, StylesProvider } from "@material-ui/core";
-import styles from './characterList.module.css';
+import styles from "./characterList.module.css";
 import Widgets from "../widgets/widgets";
 
 export default function TitlebarGridList(props: {

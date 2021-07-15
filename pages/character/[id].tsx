@@ -26,14 +26,15 @@ export default function MyCharacter({
   };
 }) {
   // console.log(props);
-  const [session, loading] = useSession();
-  var authFunction;
-  if (session) authFunction = signOut;
-  else authFunction = signIn;
+  // const [session, loading] = useSession();
+  // var authFunction;
+  // if (session) authFunction = signOut;
+  // else authFunction = signIn;
 
   return (
     <>
-      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
+      {/* <Navbar auth={() => authFunction()} isAuth={session ? true : false}> */}
+      <Navbar>
         <Character {...{ params }} />
       </Navbar>
     </>

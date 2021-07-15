@@ -88,7 +88,7 @@ export default function Widgets(props) {
                 <div className={[styles.fixed, styles.cell3].join(' ')} >
                     <div className={styles.heading} >Home</div>
                     <div className={styles.widgetContent}>
-                        <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget />
+                        <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget placeholder="Search Character Name"/>
                     </div>
                 </div>
 

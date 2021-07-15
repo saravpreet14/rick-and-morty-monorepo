@@ -86,7 +86,7 @@ export default function Episodes(props) {
             ))}
         </> : 
         <>
-            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} />
+            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} placeholder="Search Episode Name"/>
             {episodesData.map(episode => {
                 return (
                     <Link href={`/episode/${episode.id}`} passHref key={episode.id} >

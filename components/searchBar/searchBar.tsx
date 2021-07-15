@@ -11,6 +11,7 @@ export default function SearchBar(props: {
   search: (event: React.FormEvent<HTMLDivElement>) => void,
   value: string,
   change: (string) => void,
+  placeholder: string,
   isEpisode?: boolean,
   isWidget?: boolean,
 }) {
@@ -23,7 +24,7 @@ export default function SearchBar(props: {
       <Paper component="form" className={customStyles.main} onSubmit={props.search} style={props.isEpisode ? {width: '100%'} : null} >
         <InputBase
           className={customStyles.searchArea}
-          placeholder="Search"
+          placeholder={props.placeholder}
           onChange={(event) => props.change(event.target.value)}
           value={props.value}
         />

@@ -24,7 +24,7 @@ export default function Navbar(props) {
           if(Router.pathname === '/') Router.reload();
           else Router.push('/');
         }} >
-          <Image src='/rickMorty.svg' width='70' height='70' />
+          <Image src='/rickMorty.svg' width='70' height='70' alt="logo"/>
         </div>
         {auth ? (<span className={styles.navigation} >
           <Link href='/characters' passHref >
@@ -36,7 +36,7 @@ export default function Navbar(props) {
         </span>): null}
         {auth ? (
           <span className={styles.icon} style={{float: 'right'}} onClick={() => logout().then(() => Router.push('/auth'))} >
-            <Image src='/logout.svg' width='70' height='70' layout='responsive' />
+            <Image src='/logout.svg' width='70' height='70' layout='responsive' alt="logout" />
           </span>
         ) : null}
       </div>
