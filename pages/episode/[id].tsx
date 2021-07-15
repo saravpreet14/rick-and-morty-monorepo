@@ -14,13 +14,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-export default function MyCharacter({
+export default function MyEpisode({
   params,
 }: {
   params: {
     id: string;
   };
 }) {
+  console.log("MyEpisode",params);
   
   return (
     <Navbar >
