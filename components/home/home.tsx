@@ -6,6 +6,7 @@ import SearchBar from "../searchBar/searchBar";
 import CharacterList from "../charList/characterList";
 import { Button, CircularProgress } from "@material-ui/core";
 import Error from '../error/error';
+import Skeleton from 'react-loading-skeleton';
 
 interface characterData {
     id: string;
@@ -20,7 +21,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   const trackScrolling = (event) => {
     var element = event.target;
     // console.log(element.scrollHeight, element.scrollTop, element.clientHeight)
-    if (element.scrollHeight - element.scrollTop - 80 <= element.clientHeight) {
+    if (element.scrollHeight - element.scrollTop - 1580 <= element.clientHeight) {
       loadMore();
       // console.log('scrolled')
     }
@@ -58,7 +59,23 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     errorPolicy: "ignore",
   });
 
-  if (loading) return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>; //<Spinner />;
+  if (false || loading) {
+    return (
+      <div className={styles.skeletonHome} >
+        <div className={styles.skeletonSearch} >
+          <Skeleton count={1} height={50} />
+        </div>
+        <div className={styles.skeletonList} >
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((t) => (
+            <div className={styles.skeletonImage} key={t} >
+              <Skeleton height={350} width={300} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+    //return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>;
+  }
   if (error) return <Error />;
 
   function loadMore(/*isSearch:boolean, my_filter:string*/) {
@@ -144,7 +161,14 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           // >
           //   Load More
           // </Button> : 
-          <CircularProgress />
+          // <CircularProgress />
+          <div className={styles.skeletonList} >
+            {[1, 2, 3, 4].map((t) => (
+              <div className={styles.skeletonImage} key={t} >
+                <Skeleton height={350} width={300} />
+              </div>
+            ))}
+          </div>
         ) : null}
       </div>
     </div>

@@ -7,6 +7,7 @@ import { CircularProgress } from '@material-ui/core';
 import SearchBar from '../searchBar/searchBar';
 import { KeyboardReturnOutlined, RedoOutlined } from '@material-ui/icons';
 import Link from 'next/link';
+import Skeleton from 'react-loading-skeleton';
 
 var isSearch:boolean = false;
 var static_filter:string = "";
@@ -50,8 +51,7 @@ export default function Episodes(props) {
         loadMore();
     }, [data]);
 
-    if (loading) 
-    return <div className={styles.spinner} >{/*<CircularProgress className={styles.progress} />*/}</div>;
+    // if (loading) return <div className={styles.spinner} >{/*<CircularProgress className={styles.progress} />*/}</div>;
     if (error) return <Error />;
 
     function search(query: string) {
@@ -69,12 +69,24 @@ export default function Episodes(props) {
         }).catch(error => null);
     }
 
-    const episodesData = data.episodes.results;
+    let episodesData = null;
+    if(!loading) episodesData = data.episodes.results;
 
     return (
         <div className={styles.main}>
-            {/* <br/><br/> */}
-            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} placeholder={props.placeholder}/>
+        {loading ? 
+        <>
+            <div className={styles.searchSkeleton} >
+                <Skeleton count={1} height={50} />
+            </div>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(key => (
+                <div className={styles.listElementSkeleton} key={key}>
+                    <Skeleton count={1} key={key} height={50} />
+                </div>
+            ))}
+        </> : 
+        <>
+            <SearchBar isEpisode value={myFilter} change={(value: string) => setFilter(value)} search={(event: React.FormEvent<HTMLDivElement>) => { event.preventDefault(); search(event.target[0].value); }} placeholder="Search Episode Name"/>
             {episodesData.map(episode => {
                 return (
                     <Link href={`/episode/${episode.id}`} passHref key={episode.id} >
@@ -84,6 +96,7 @@ export default function Episodes(props) {
                     </Link>
                 )
             })}
+        </>}
         </div>
     );
 }
