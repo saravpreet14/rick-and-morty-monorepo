@@ -64,12 +64,12 @@ export  default function Forum(props) {
     },
     root: {
       position: "sticky",
-      top: '0',
+      bottom: '0',
       display:"grid",
-      "z-index": "100",
+      "z-index": "50",
       gridTemplateColumns:"1fr",
       justifyContent:"space-around",
-      // margin:"3px",
+      margin:"3px",
       backgroundColor:"white",
       // height: '100%',
       overflow: "auto",
@@ -142,8 +142,8 @@ export  default function Forum(props) {
   function Addcomment(){
       // console.log(current_msg);
       if(current_msg!="") {
-        setData([{user: user, msg: current_msg}, ...data]);
-        localStorage.setItem("data",JSON.stringify([{user: user, msg: current_msg}, ...data]));
+        setData([...data,{user: user, msg: current_msg}]);
+        localStorage.setItem("data",JSON.stringify([...data,{user: user, msg: current_msg}]));
         setMsg("");
         static_msg="";
       }
@@ -154,6 +154,19 @@ export  default function Forum(props) {
       {/* <div className={classes.heading} >
           Discussion Forum
       </div> */}
+      <div className={classes.discussion}>
+      {data.map((user_data,index) => (
+            <div className={classes.container} key={index}>
+              <div className={classes.user}>
+              <AccountCircleIcon color={get_color[(user_data.user)]}/>
+                {user_data.user}
+              </div>
+              <div>
+                {user_data.msg}
+              </div>
+            </div>
+      ))}
+      </div>
       <form
         className={classes.root}
         noValidate
@@ -181,19 +194,6 @@ export  default function Forum(props) {
           Comment
         </Button>
       </form>
-      <div className={classes.discussion}>
-      {data.map((user_data,index) => (
-            <div className={classes.container} key={index}>
-              <div className={classes.user}>
-              <AccountCircleIcon color={get_color[(user_data.user)]}/>
-                {user_data.user}
-              </div>
-              <div>
-                {user_data.msg}
-              </div>
-            </div>
-      ))}
-      </div>
       </div>
         </>;
 }
