@@ -36,30 +36,18 @@
 }
 
 .image {
-  margin: 0;
-  padding: 0;
-  border-width: 0;
-}
-.noData {
-  text-align: center;
-  font-size: 2rem;
-}
-.loadSize {
-  height: 300px;
-  width: 300px;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
 }
 
-/* @media (max-width: 580px) {
-  .loadSize {
-    height: 85px;
-    width: 85px;
-  }
-  .card {
-    max-width: 85px;
-  }
-  .name {
-    padding: 2px;
-    font-size: 0.7rem;
-    margin-top: -3px;
-  }
-} */
+@media (max-width: 1000px) {
+    .card {
+        max-width: 140px;
+        margin: 0.8rem;
+    }
+    .name {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+}

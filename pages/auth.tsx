@@ -13,9 +13,10 @@ import {
   Button,
 } from "@material-ui/core";
 import {isAuth, authenticate} from '../lib/auth';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 export default function Auth(props) {
+  const Router = useRouter();
   const [formData, setFormData] = useState({
     isSignUp: false,
     username: "",
@@ -27,11 +28,13 @@ export default function Auth(props) {
     showPassword: true,
   });
 
-  isAuth().then(isVaild => {
-    if(isVaild) {
-        Router.push('/');
-    }
-  });
+  if(typeof window !== 'undefined') {
+    isAuth().then(isVaild => {
+      if(isVaild) {
+          Router.push('/');
+      }
+    });
+  }
 
   const handleChange = (prop) => (event) => {
     setFormData((prevData) => ({ ...prevData, [prop]: event.target.value }));
@@ -79,7 +82,7 @@ export default function Auth(props) {
   return (
     <Navbar>
     <Container maxWidth="xs" className={styles.main} >
-      {/* <h1 className={styles.heading} >Sign {formData.isSignUp ? "Up" : "In"}</h1> */}
+      <h1 className={styles.heading} >Login to Rick and Morty</h1>
       <form className={styles.root} noValidate autoComplete="off">
         <FormControl
           variant="outlined"

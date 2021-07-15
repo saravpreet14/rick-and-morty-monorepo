@@ -31,7 +31,7 @@
 
 .partition {
   display: grid;
-  grid-template-columns: 2fr 8fr;
+  grid-template-columns: 374px 8fr;
   height: 100%;
 }
 
@@ -49,13 +49,6 @@
 .homeWidget {
   height: 100%;
   overflow: scroll;
-}
-
-@media (max-width: 1000px) {
-  .partition {
-    grid-template-columns: 1fr;
-    grid-template-rows: 70px 1fr;
-  }
 }
 
 .progress {
@@ -89,4 +82,17 @@
 .skeletonHome {
   display: grid;
   place-items: center;
+}
+
+@media (max-width: 1000px) {
+  .partition {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 1fr;
+  }
+  .skeletonImage {
+    max-width: 140px;
+    max-height: 165px;
+    margin: 0.8rem;
+    overflow: hidden;
+  }
 }

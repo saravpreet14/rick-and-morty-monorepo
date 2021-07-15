@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import { AppProps,NextWebVitalsMetric } from "next/app";
 // import { onError } from "@apollo/client/link/error";
-import { Provider } from "next-auth/client";
+// import { Provider } from "next-auth/client";
 // import axios from 'axios';
 // import printReadings from '../readings.js'
 const client = new ApolloClient({
@@ -28,11 +28,9 @@ const readingsDatabse = "https://rick-and-morty-22d4d-default-rtdb.firebaseio.co
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider session={pageProps.session}>
       <ApolloProvider client={client}>
         <Component {...pageProps} />
       </ApolloProvider>
-    </Provider>
   );
 }
 

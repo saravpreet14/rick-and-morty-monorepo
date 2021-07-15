@@ -41,12 +41,12 @@ export default function Widgets(props) {
     
     return (
         <div className={styles.main}>
-            <div className={styles.sticky} >
+            {/* <div className={styles.sticky} >
                 <IconButton onClick={() => window.history.back() } className={styles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
                     <ArrowBackIosRounded />Back
                 </IconButton>
                 <h1 className={styles.episodeName} >{loading ? <Skeleton count={1} height={50} /> : EpisodeData.name}</h1>
-            </div>
+            </div> */}
 
             <div className={styles.grid}>
             {loading ? 
@@ -62,6 +62,7 @@ export default function Widgets(props) {
                 {/* {loading ? <Skeleton count={1} height={500} /> : (<> */}
                     <div className={styles.heading} >Basic Info</div>
                     <div className={styles.content} >
+                        <p><strong>Name: </strong>{EpisodeData.name}</p>
                         <p><strong>Season: </strong>{Number(EpisodeData.episode.slice(1, 3))}</p>
                         <p><strong>Episode: </strong>{Number(EpisodeData.episode.slice(-2))}</p>
                         <p><strong>Air Date: </strong>{EpisodeData.air_date}</p>

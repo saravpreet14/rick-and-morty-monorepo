@@ -17,15 +17,15 @@ export default function TitlebarGridList(props: {
   isWidget: boolean;
 }) {
     return (
-        <div className={styles.main} >
+        <div className={styles.main} style={props.isWidget ? {marginLeft: '20px', marginRight: '20px'} : null} >
             {/* <Link href='/characters'><a>Here</a></Link> */}
             {props.characters.map(character => (
                 <Link href={`/character/${character.name.replace(' ', '')}-${character.id}`} key={character.id} passHref >
-                    <div className={styles.card} key={character.id} style={props.isWidget ? {maxWidth: '100px', margin: '0.6rem'} : null} >
+                    <div className={styles.card} key={character.id} style={props.isWidget ? {maxWidth: '160px', margin: '0.8rem'} : null} >
                         <div className={styles.image} >
                             <Image width='300' height='300' src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`} alt={character.name} />
                         </div>
-                        <div className={styles.name} style={props.isWidget ? {fontSize: '0.7rem', padding: '5px'} : null} >{character.name}</div>
+                        <div className={styles.name} style={props.isWidget ? {fontSize: '0.8rem', padding: '5px'} : null} >{character.name}</div>
                     </div>
                 </Link>
             ))}

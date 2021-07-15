@@ -11,11 +11,11 @@ export default function Navbar(props) {
   const [path, setPath] = useState('');
   if(typeof window !== 'undefined' && path !== Router.pathname) {
     setPath(Router.pathname);
+    isAuth().then(isValid => {
+      if(isValid) setAuth(true);
+      else if(Router.pathname !== '/auth') Router.push('/auth');
+    });
   }
-  isAuth().then(isValid => {
-    if(isValid) setAuth(true);
-    else if(Router.pathname !== '/auth') Router.push('/auth');
-  });
 
   return (
     <div className={styles.main} >
@@ -24,7 +24,7 @@ export default function Navbar(props) {
           if(Router.pathname === '/') Router.reload();
           else Router.push('/');
         }} >
-          <Image src='/rickMorty.svg' width='70' height='70' alt=""/>
+          <Image src='/rickMorty.svg' width='70' height='70' alt="logo"/>
         </div>
         {auth ? (<span className={styles.navigation} >
           <Link href='/characters' passHref >
@@ -35,8 +35,8 @@ export default function Navbar(props) {
           </Link>
         </span>): null}
         {auth ? (
-          <span className={styles.logout} onClick={() => logout().then(() => Router.push('/auth'))} >
-            <Image src='/logout.svg' width='70' height='70' layout='responsive' alt="" />
+          <span className={styles.icon} style={{float: 'right'}} onClick={() => logout().then(() => Router.push('/auth'))} >
+            <Image src='/logout.svg' width='70' height='70' layout='responsive' alt="logout" />
           </span>
         ) : null}
       </div>

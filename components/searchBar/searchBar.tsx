@@ -21,16 +21,19 @@ export default function SearchBar(props: {
       {/* <IconButton onClick={() => window.history.back() } className={customStyles.iconBack} style={{backgroundColor: 'white', borderRadius: '2px', padding: '2px'}} aria-label="menu">
         <ArrowBackIosRounded />Back
       </IconButton> */}
-      <Paper component="form" className={customStyles.main} onSubmit={props.search} >
+      <Paper component="form" className={customStyles.main} onSubmit={props.search} style={props.isEpisode ? {width: '100%'} : null} >
         <InputBase
           className={customStyles.searchArea}
           placeholder={props.placeholder}
           onChange={(event) => props.change(event.target.value)}
           value={props.value}
         />
-        <IconButton type="submit" aria-label="search">
+        {/* <IconButton type="submit" aria-label="search">
           <Search />
-        </IconButton>
+        </IconButton> */}
+        <div className={customStyles.icon} >
+          <Search />
+        </div>
       </Paper>
     </div>
   );
