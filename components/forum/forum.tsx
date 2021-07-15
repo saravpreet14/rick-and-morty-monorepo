@@ -1,6 +1,5 @@
 import {getForumData} from "./mock_api";
 import React, { useState, useRef, useEffect } from "react";
-import { useSession } from "next-auth/client";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {
   makeStyles,
@@ -9,6 +8,7 @@ import {
   TextField,
   TextFieldClassKey,CssBaseline, AppBar, Toolbar 
 } from "@material-ui/core";
+import { getUser } from '../../lib/auth';
 
 
 var current_data = [];
@@ -32,7 +32,11 @@ export  default function Forum(props) {
   },[current_data]);
 
   const [current_msg,setMsg] = useState(static_msg);
-  const [session, loading] = useSession();
+  const [user, setUser] = useState(null);
+
+  getUser().then(user => {
+    setUser(user);
+  })
 
   const styles = makeStyles((theme) => ({
     // frame:{
@@ -51,7 +55,7 @@ export  default function Forum(props) {
       justifyContent:"space-around",
       fontSize: "1.5rem",
       // fontFamily: "Papyrus, Sans Serif",
-      backgroundColor:"rgba(63,81,181, 0.9) !important;",
+      backgroundColor:"rgba(63,81,181, 0.8) !important;",
       height: '2.4rem',
       color:"white",
       padding:"2px",
@@ -125,8 +129,8 @@ export  default function Forum(props) {
   function Addcomment(){
       // console.log(current_msg);
       if(current_msg!="") {
-        setData([...data,{user:session.user.name,msg:current_msg}]);
-        localStorage.setItem("data",JSON.stringify([...data,{user:session.user.name,msg:current_msg}]));
+        setData([...data,{user: user, msg: current_msg}]);
+        localStorage.setItem("data",JSON.stringify([...data,{user: user, msg: current_msg}]));
         setMsg("");
         static_msg="";
       }
