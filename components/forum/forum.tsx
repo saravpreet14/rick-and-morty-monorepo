@@ -63,23 +63,34 @@ export  default function Forum(props) {
       'border-top-left-radius': '8px',
     },
     root: {
-      display: "grid",
-      gridTemplateColumns:"auto",
+      position: "sticky",
+      top: '0',
+      display:"grid",
+      "z-index": "100",
+      gridTemplateColumns:"1fr",
       justifyContent:"space-around",
-      margin:"3px",
+      // margin:"3px",
+      backgroundColor:"white",
       // height: '100%',
-      overflow: 'hidden'
+      overflow: "auto",
+      
     },
     comment_box:{
-      margin:"5px",
-      width:"50px"
+      position: "sticky",
+      // top: '0',
+      // margin:"5px",
+      width:"90%",
+      margin:"auto",
+      marginTop: "10px",
     },
     button:{
-      margin:"5px",
-      // position:"absolute",
-      right:"-150px",
+      // margin:"5px",
+      // // position:"absolute",
+      // right:"-150px",
       // maxHeight:"20px",
-      maxWidth:"fit-content"
+      maxWidth:"fit-content",
+      margin: "auto",
+      marginTop: "5px",
     },
     discussion:{
       // borderRadius:"5px",
@@ -90,8 +101,8 @@ export  default function Forum(props) {
       width:"90%",
       marginLeft:"5%",
       marginTop:"5px",
-      overflowY:"scroll",
-      maxHeight:"60%"
+      // overflowY:"scroll",
+      // maxHeight:"60%"
       // position:"absolute"
     },
     container:{
@@ -99,8 +110,9 @@ export  default function Forum(props) {
       border:"solid",
       borderWidth:".2px",
       padding:"4px",
-      backgroundColor:"rgba(153, 217, 238, 0.194)",
-      // margin:"5px",
+      // backgroundColor:"rgba(153, 217, 238, 0.194)",
+      margin:"5px",
+      borderRadius:"10px",
       // display:"flex",
       // gridTemplateColumns:"auto auto",
       // justifyContent:"space-around",
@@ -112,12 +124,13 @@ export  default function Forum(props) {
       // borderBottom:"solid",
       display:"flex",
       width:"fit-content",
-      fontFamily: "Sans Serif",
+      // fontFamily: "Sans Serif",
       fontSize : "18px",
       fontWeight: "bold",
     },
     main: {
       height: '100%',
+      overflowY:"auto"
     }
 
   }));
@@ -129,8 +142,8 @@ export  default function Forum(props) {
   function Addcomment(){
       // console.log(current_msg);
       if(current_msg!="") {
-        setData([...data,{user: user, msg: current_msg}]);
-        localStorage.setItem("data",JSON.stringify([...data,{user: user, msg: current_msg}]));
+        setData([{user: user, msg: current_msg}, ...data]);
+        localStorage.setItem("data",JSON.stringify([{user: user, msg: current_msg}, ...data]));
         setMsg("");
         static_msg="";
       }
@@ -138,22 +151,9 @@ export  default function Forum(props) {
 
   return <>
   <div className={classes.main}>
-      <div className={classes.heading} >
+      {/* <div className={classes.heading} >
           Discussion Forum
-      </div>
-      <div className={classes.discussion}>
-      {data.map((user_data,index) => (
-            <div className={classes.container} key={index}>
-              <div className={classes.user}>
-              <AccountCircleIcon color={get_color[(user_data.user)]}/>
-                {user_data.user}
-              </div>
-              <div>
-                {user_data.msg}
-              </div>
-            </div>
-      ))}
-      </div>
+      </div> */}
       <form
         className={classes.root}
         noValidate
@@ -162,10 +162,10 @@ export  default function Forum(props) {
       >    
         <TextField
           className={classes.comment_box}
-          label="Add a comment"
+          // label="Add a comment"
           id="outlined-size-normal"
           variant="outlined"
-          style={{ width: "15rem" }}
+          style={{ width: "90%" }}
           placeholder="Add a comment"
           value={current_msg}
           onChange={handleChange}
@@ -181,6 +181,19 @@ export  default function Forum(props) {
           Comment
         </Button>
       </form>
+      <div className={classes.discussion}>
+      {data.map((user_data,index) => (
+            <div className={classes.container} key={index}>
+              <div className={classes.user}>
+              <AccountCircleIcon color={get_color[(user_data.user)]}/>
+                {user_data.user}
+              </div>
+              <div>
+                {user_data.msg}
+              </div>
+            </div>
+      ))}
+      </div>
       </div>
         </>;
 }

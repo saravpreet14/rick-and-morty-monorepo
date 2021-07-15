@@ -98,7 +98,8 @@ export default function Widgets(props) {
 
                 <div className={styles.block2} >  
                 <div className={[styles.fixed, styles.cell4].join(' ')} >
-                    {/* <Forum/> */}
+                    <div className={styles.heading} >Discussion Forum</div>
+                    <Forum/>
                 </div>
 
                 <div className={[styles.fixed, styles.cell3].join(' ')} >

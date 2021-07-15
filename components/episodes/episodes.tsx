@@ -52,7 +52,7 @@ export default function Episodes(props) {
     }, [data]);
 
     // if (loading) return <div className={styles.spinner} >{/*<CircularProgress className={styles.progress} />*/}</div>;
-    if (error) return <Error />;
+    // if (error) return <Error />;  not needed as widgets error is sufficient
 
     function search(query: string) {
         static_filter = query;
