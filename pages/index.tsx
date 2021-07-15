@@ -1,7 +1,8 @@
 import Navbar from "../components/navbar/navbar";
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 export default function SignInPage() {
+  const Router = useRouter();
   if(typeof window !== 'undefined') {
     Router.push('/characters');
   }

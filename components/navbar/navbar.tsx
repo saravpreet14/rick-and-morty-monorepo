@@ -11,11 +11,11 @@ export default function Navbar(props) {
   const [path, setPath] = useState('');
   if(typeof window !== 'undefined' && path !== Router.pathname) {
     setPath(Router.pathname);
+    isAuth().then(isValid => {
+      if(isValid) setAuth(true);
+      else if(Router.pathname !== '/auth') Router.push('/auth');
+    });
   }
-  isAuth().then(isValid => {
-    if(isValid) setAuth(true);
-    else if(Router.pathname !== '/auth') Router.push('/auth');
-  });
 
   return (
     <div className={styles.main} >
@@ -35,12 +35,12 @@ export default function Navbar(props) {
           </Link>
         </span>): null}
         {auth ? (
-          <span className={styles.logout} onClick={() => logout().then(() => Router.push('/auth'))} >
+          <span className={styles.icon} style={{float: 'right'}} onClick={() => logout().then(() => Router.push('/auth'))} >
             <Image src='/logout.svg' width='70' height='70' layout='responsive' />
           </span>
         ) : null}
       </div>
-      <div className={styles.body} >{auth || Router.pathname === '/auth' ? props.children : null }</div>
+      <div className={styles.body} >{auth || path === '/auth' ? props.children : null }</div>
     </div>
   );
 }

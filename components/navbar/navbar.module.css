@@ -37,7 +37,7 @@
   height: 70px;
   width: 100vw;
   background-color: #3f51b5;
-  padding: 3px 3vw;
+  padding: 3px 20px;
   text-align: center;
 }
 
@@ -47,13 +47,13 @@
 }
 
 .icon {
-  height: 100%;
-  width: 64px;
+  height: 48px;
+  width: 48px;
   align-items: center;
   justify-content: center;
-  padding: 3px;
+  padding: 0;
   cursor: pointer;
-  margin: 0;
+  margin: 8px 0;
   float: left;
   /* display: inline; */
 }
@@ -73,22 +73,25 @@
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
   place-items: center;
-  grid-gap: 5vw;
-  font-size: 2.2rem;
+  grid-gap: 1vw;
+  font-size: 2rem;
   color: white;
 }
 
 .navlink {
   cursor: pointer;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 .navlink:hover {
-  color: orange;
+  background-color: rgba(40, 28, 77, 0.3);;
 }
 
 .active {
-  color: orange;
-  text-decoration: underline orange;
+  /* color: orange; */
+  /* text-decoration: underline orange; */
+  background-color: rgba(40, 28, 77, 0.3);;
 }
 
 @media (max-width: 1000px) {
@@ -102,14 +105,16 @@
     height: 50px;
     padding: 3px 1vw;
   }
-  .icon {
-    width: 44px;
-  }
   .logout {
     width: 44px;
   }
   .navigation {
     min-height: 44px;
     font-size: 1.5rem;
+  }
+  .icon {
+    width: 36px;
+    height: 36px;
+    margin: 4px 0;
   }
 }

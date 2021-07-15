@@ -67,8 +67,8 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         </div>
         <div className={styles.skeletonList} >
           {[1, 2, 3, 4, 5, 6, 7, 8].map((t) => (
-            <div className={styles.skeletonImage} key={t} >
-              <Skeleton height={350} width={300} />
+            <div className={styles.skeletonImage} style={props.isWidget ? {margin: '0.8rem'} : null} key={t} >
+              <Skeleton height={props.isWidget ? 185 : 350} width={props.isWidget ? 160 : 300} />
             </div>
           ))}
         </div>
@@ -164,8 +164,8 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           // <CircularProgress />
           <div className={styles.skeletonList} >
             {[1, 2, 3, 4].map((t) => (
-              <div className={styles.skeletonImage} key={t} >
-                <Skeleton height={350} width={300} />
+              <div className={styles.skeletonImage} style={props.isWidget ? {margin: '0.8rem'} : null} key={t} >
+                <Skeleton height={props.isWidget ? 185 : 350} width={props.isWidget ? 160 : 300} />
               </div>
             ))}
           </div>
