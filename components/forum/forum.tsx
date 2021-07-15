@@ -64,19 +64,21 @@ export  default function Forum(props) {
     },
     root: {
       position: "sticky",
-      bottom: '0',
+      // position:"absolute",
+      // bottom: '15px',
+      bottom: '0px',
       display:"grid",
       "z-index": "50",
       gridTemplateColumns:"1fr",
       justifyContent:"space-around",
-      margin:"3px",
+      marginTop:"3px",
       backgroundColor:"white",
       // height: '100%',
       overflow: "auto",
       
     },
     comment_box:{
-      position: "sticky",
+      // position: "sticky",
       // top: '0',
       // margin:"5px",
       width:"90%",
@@ -96,8 +98,10 @@ export  default function Forum(props) {
       // borderRadius:"5px",
       // border:"solid",
       // borderWidth:"2px",
-      display:"grid",
-      gridTemplateColumns:"1fr",
+      // display:"grid",
+      // gridTemplateColumns:"1fr",
+      display:"flex",
+      "flex-direction": "column-reverse",
       width:"90%",
       marginLeft:"5%",
       marginTop:"5px",
@@ -130,7 +134,11 @@ export  default function Forum(props) {
     },
     main: {
       height: '100%',
-      overflowY:"auto"
+      overflowY:"auto",
+      // display:"grid",
+      // display:"flex",
+      // flexDirection:"column",
+      // justifyContent:"space-between"
     }
 
   }));
@@ -142,8 +150,8 @@ export  default function Forum(props) {
   function Addcomment(){
       // console.log(current_msg);
       if(current_msg!="") {
-        setData([...data,{user: user, msg: current_msg}]);
-        localStorage.setItem("data",JSON.stringify([...data,{user: user, msg: current_msg}]));
+        setData([{user: user, msg: current_msg},...data]);
+        localStorage.setItem("data",JSON.stringify([{user: user, msg: current_msg},...data]));
         setMsg("");
         static_msg="";
       }

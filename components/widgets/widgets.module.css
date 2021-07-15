@@ -89,7 +89,7 @@
   font-size: 1.5rem;
   /* height: 2.4rem; */
   /* font-family: "Papyrus", "Sans Serif"; */
-  background-color: rgba(63,81,181, 0.8) !important;
+  background-color: rgba(63, 81, 181, 0.8) !important;
   color: white;
   padding: 2px;
   /* position: sticky;
@@ -135,7 +135,7 @@
 .block1 {
   display: grid;
   height: 100%;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr;
   overflow: hidden;
   grid-gap: 16px;
 }
@@ -147,7 +147,7 @@
   overflow: hidden;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: 900px 900px;
@@ -158,6 +158,9 @@
   }
   .episodeName {
     font-size: 1.6rem;
+  }
+  .block1 {
+    grid-template-rows: 0.7fr 1fr;
   }
   .block2 {
     grid-template-columns: 1fr;
