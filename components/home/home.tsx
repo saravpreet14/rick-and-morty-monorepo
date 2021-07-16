@@ -69,13 +69,12 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         <div className={styles.skeletonList} >
           {[1, 2, 3, 4, 5, 6, 7, 8].map((t) => (
             <div className={styles.skeletonImage} style={props.isWidget ? {margin: '0.8rem'} : null} key={t} >
-              <Skeleton height={props.isWidget ? 185 : 350} width={props.isWidget ? 160 : 300} />
+              <Skeleton height={props.isWidget ? 175 : 350} width={props.isWidget ? 150 : 300} />
             </div>
           ))}
         </div>
       </div>
     );
-    //return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>;
   }
   if (error) return <Error />;
 
