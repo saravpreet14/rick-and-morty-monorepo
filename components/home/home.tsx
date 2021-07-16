@@ -16,6 +16,7 @@ interface characterData {
 
 var isSearch:boolean = false;
 var static_filter:string = "";
+var nextPageToLoaded = 2;
 
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean, placeholder:string}) {
   const trackScrolling = (event) => {
@@ -78,9 +79,9 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   }
   if (error) return <Error />;
 
-  function loadMore(/*isSearch:boolean, my_filter:string*/) {
+  function loadMore() {
     document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
-    const nextPage = data.characters.info.next;
+    const nextPage = nextPageToLoaded ;//data.characters.info.next;
     // console.log(data.characters.info)
     if(nextPage === null) return;
     var variables = { page: nextPage, filter: {} };
@@ -96,6 +97,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           ...prevResult.characters.results,
           ...fetchMoreResult.characters.results,
         ];
+        nextPageToLoaded = fetchMoreResult.characters.info.next;
         return fetchMoreResult;
       },
     }).catch(error => null);
@@ -115,6 +117,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     fetchMore({
       variables: { page: null, filter: { name: query } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
+        nextPageToLoaded = fetchMoreResult.info.next;
         return fetchMoreResult;
       },
     }).catch(error => null)
