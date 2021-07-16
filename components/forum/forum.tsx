@@ -68,7 +68,7 @@ export  default function Forum(props) {
       // bottom: '15px',
       bottom: '0px',
       display:"grid",
-      "z-index": "50",
+      // "z-index": "50",
       gridTemplateColumns:"1fr",
       justifyContent:"space-around",
       marginTop:"3px",
@@ -94,6 +94,7 @@ export  default function Forum(props) {
       margin: "auto",
       marginTop: "5px",
     },
+
     discussion:{
       // borderRadius:"5px",
       // border:"solid",
@@ -106,7 +107,7 @@ export  default function Forum(props) {
       marginLeft:"5%",
       marginTop:"5px",
       // overflowY:"scroll",
-      // maxHeight:"60%"
+      // maxHeight:"90%"
       // position:"absolute"
     },
     container:{
@@ -135,6 +136,10 @@ export  default function Forum(props) {
     main: {
       height: '100%',
       overflowY:"auto",
+      // display:"flex",
+      // "flex-direction": "column-reverse",
+      // display:"flex",
+      // "flex-direction": "column-reverse",
       // display:"grid",
       // display:"flex",
       // flexDirection:"column",
