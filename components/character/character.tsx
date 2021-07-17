@@ -94,7 +94,7 @@ export default function MyCharacter(props: { params: { id: string } }) {
   return (
 
       <div className={styles.root} >
-        <div className={styles.container1}>
+        <div className={styles.container1} {...{style:{marginTop:"16px"}}}>
           <div className={styles.profile_image}>
             <div className={styles.image}>
               <Image src={image} alt={name} width="300" height="300" />
