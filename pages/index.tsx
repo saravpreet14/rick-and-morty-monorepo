@@ -6,9 +6,5 @@ export default function SignInPage() {
   if(typeof window !== 'undefined') {
     Router.push('/characters');
   }
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <Navbar />;
 }
