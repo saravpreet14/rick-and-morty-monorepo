@@ -77,11 +77,11 @@ export default function MyCharacter(props: { params: { id: string } }) {
   if (loading) {
     return (      
       <div className={styles.root} >
-        <div className={styles.container1} style={{borderColor: 'white'}}>
-        <Skeleton count={1} height={570} width={350} />
+        <div className={styles.container1} style={{borderColor: 'white',marginTop:"0px"}}>
+        <Skeleton count={1} height={570} width={330}  />
         </div>
         <div className={styles.container2}>
-        <Skeleton count={1} height={900} width={330} />
+        <Skeleton count={1} height={1200} width={330} />
         </div>
       </div>
     )
@@ -125,9 +125,11 @@ export default function MyCharacter(props: { params: { id: string } }) {
         </div>
       </div>
       <div className={styles.container2}>
+        <div className={styles.new_heading} >
         <div className={styles.heading_box}>
           <h2 className={styles.heading}>FEATURED IN</h2>
           {/* <div className={styles.line}></div> */}
+        </div>
         </div>
         {episode.map((episode) => (
           <Link href={`/episode/${episode.id}`} passHref key={episode.id} >
