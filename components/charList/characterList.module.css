@@ -36,18 +36,18 @@
 }
 
 .image {
-    margin: 0;
-    padding: 0;
-    border-width: 0;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
 }
 
 @media (max-width: 1000px) {
-    .card {
-        max-width: 140px;
-        margin: 0.8rem;
-    }
-    .name {
-        font-size: 0.8rem;
-        padding: 5px;
-    }
+  .card {
+    max-width: 140px;
+    margin: 0.8rem;
+  }
+  .name {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
 }
