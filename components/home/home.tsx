@@ -63,6 +63,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   `;
 
   var [my_filter, set_filter] = useState(static_filter);
+  var [lastSearch, set_lastSearch] = useState(false);
 
   var { loading, error, data, fetchMore } = useQuery(Characters_data, {
     variables: { page: 1, filter: {} },
@@ -97,7 +98,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   if(!loading && !error) pageLoaded = true;
 
   function loadMore() {
-    lastSearch = false;
+    set_lastSearch(false);
     // console.log('removed', document.querySelector('#scroll').childElementCount)
     document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
     const nextPage = nextPageToLoaded ;//data.characters.info.next;
@@ -132,7 +133,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   }
 
   function search(query: string): void {
-    lastSearch = (static_filter === '' || query === '') && nextPageToLoaded !== null;
+    set_lastSearch((static_filter === '' || query === '') && nextPageToLoaded !== null);
     // set_remove(prev => prev+1);
     // console.log('removed search', document.querySelector('#scroll').childElementCount)
     // document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
