@@ -69,11 +69,13 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     variables: { page: 1, filter: {} },
     errorPolicy: "ignore",
   });
+  // console.log(data)
 
   useEffect(() => {
-    if(data && data.characters && !lastSearch) {
+    const page = document.querySelector('#scroll');
+    if(data && !loading && !error && !lastSearch && page) {
       // console.log(data)
-      document.querySelector('#scroll').addEventListener('scroll', trackScrolling, true);
+      page.addEventListener('scroll', trackScrolling, true);
     }
   }, [data])
 
@@ -99,11 +101,11 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
 
   function loadMore() {
     set_lastSearch(false);
+    const nextPage = nextPageToLoaded ;//data.characters.info.next;
+    if(nextPage === null) return;
     // console.log('removed', document.querySelector('#scroll').childElementCount)
     document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
-    const nextPage = nextPageToLoaded ;//data.characters.info.next;
     // console.log(data.characters.info)
-    if(nextPage === null) return;
     var variables = { page: nextPage, filter: {} };
     if (isSearch) {
       variables = { page: nextPage, filter: { name: static_filter } };
@@ -133,7 +135,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   }
 
   function search(query: string): void {
-    set_lastSearch((static_filter === '' || query === '') && nextPageToLoaded !== null);
+    set_lastSearch((static_filter === '' || query === ''));// && nextPageToLoaded !== null);
     // set_remove(prev => prev+1);
     // console.log('removed search', document.querySelector('#scroll').childElementCount)
     // document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
@@ -174,7 +176,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
             variant="contained"
             color="primary"
             size={props.buttonSize}
-            onClick={() => {search(""); isSearch=false;}}
+            onClick={() => search("")}
           >
             All characters
           </Button>
