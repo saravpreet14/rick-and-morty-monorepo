@@ -8,6 +8,7 @@ import { Button, CircularProgress } from "@material-ui/core";
 import Error from '../error/error';
 import Skeleton from 'react-loading-skeleton';
 import { getEventListener } from "events";
+import next from "next";
 
 interface characterData {
     id: string;
@@ -19,6 +20,7 @@ var isSearch:boolean = false;
 var static_filter:string = "";
 var nextPageToLoaded = 2;
 var pageLoaded = false;
+var lastSearch = false;
 
 export default function Home(props:{imageSize:{width: number, height: number}, buttonSize:'small'|'medium'|'large', isWidget: boolean, placeholder:string}) {
   const trackScrolling = (event) => {
@@ -37,12 +39,12 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   //   }
   // })
 
-  useEffect(() => {
-    if(pageLoaded) {
-      console.log('effect')
-      document.querySelector('#scroll').addEventListener('scroll', trackScrolling);
-    }
-  }, [pageLoaded])
+  // useEffect(() => {
+  //   if(pageLoaded) {
+  //     console.log('effect')
+  //     document.querySelector('#scroll').addEventListener('scroll', trackScrolling);
+  //   }
+  // }, [pageLoaded])
 
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
@@ -68,9 +70,9 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   });
 
   useEffect(() => {
-    console.log(data)
-    if(data && data.characters && data.characters.info.next > 2) {
-      document.querySelector('#scroll').addEventListener('scroll', trackScrolling);
+    if(data && data.characters && !lastSearch) {
+      // console.log(data)
+      document.querySelector('#scroll').addEventListener('scroll', trackScrolling, true);
     }
   }, [data])
 
@@ -95,8 +97,9 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   if(!loading && !error) pageLoaded = true;
 
   function loadMore() {
-    console.log('removed')
-    document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
+    lastSearch = false;
+    // console.log('removed', document.querySelector('#scroll').childElementCount)
+    document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
     const nextPage = nextPageToLoaded ;//data.characters.info.next;
     // console.log(data.characters.info)
     if(nextPage === null) return;
@@ -129,8 +132,11 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
   }
 
   function search(query: string): void {
-    // console.log('removed search')
-    // document.querySelector('#scroll').removeEventListener('scroll', trackScrolling);
+    lastSearch = (static_filter === '' || query === '') && nextPageToLoaded !== null;
+    // set_remove(prev => prev+1);
+    // console.log('removed search', document.querySelector('#scroll').childElementCount)
+    // document.querySelector('#scroll').removeEventListener('scroll', trackScrolling, true);
+    // removeListener();
     isSearch = query !== '';
     static_filter = query;
     set_filter(query);
@@ -160,8 +166,9 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SearchBar isWidget={props.isWidget} search={(event: React.FormEvent<HTMLDivElement>) => {event.preventDefault(); search(event.target[0].value)}} value={my_filter} change={(value:string) => handleSearchChange(value)} placeholder={props.placeholder}/>
+        
+      <div className={styles.loadMore}>
         {isSearch ? (
-          <div className={styles.loadMore}>
           <Button
             variant="contained"
             color="primary"
@@ -170,8 +177,8 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           >
             All characters
           </Button>
-          </div>
         ) : null}
+      </div>
       <CharacterList characters={results} imageSize={props.imageSize} isWidget={props.isWidget}/>
       <div className={styles.loadMore}>
         {info.next ? (
